@@ -1,0 +1,111 @@
+.section-images {
+    max-height: 670px;
+    height: 670px;
+}
+
+.section-images .hero-images-container,
+.section-images .hero-images-container-1,
+.section-images .hero-images-container-2 {
+    margin-top: -38vh;
+}
+
+.section-images .hero-images-container {
+    max-width: 670px;
+}
+
+.section-images .hero-images-container-1 {
+    max-width: 390px;
+    position: absolute;
+    top: 55%;
+    right: 18%;
+}
+
+.section-images .hero-images-container-2 {
+    max-width: 225px;
+    position: absolute;
+    top: 68%;
+    right: 12%;
+}
+
+.section-images {
+    height: 500px;
+    max-height: 500px;
+}
+.section-images .hero-images-container {
+    max-width: 500px;
+}
+.section-images .hero-images-container-1 {
+    right: 10%;
+    top: 68%;
+    max-width: 269px;
+}
+.section-images .hero-images-container-2 {
+    right: 5%;
+    max-width: 135px;
+    top: 93%;
+}
+
+@media screen and (min-width: 991px) and (max-width: 1200px) {
+    .section-images .hero-images-container-1 {
+        right: 9%;
+        max-width: 370px;
+    }
+    .section-images .hero-images-container-2 {
+        right: 2%;
+        max-width: 216px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .section-images {
+        height: 300px;
+        max-height: 300px;
+    }
+    .section-images .hero-images-container {
+        max-width: 380px;
+    }
+    .section-images .hero-images-container-1 {
+        right: 7%;
+        top: 87%;
+        max-width: 210px;
+    }
+    .section-images .hero-images-container-2 {
+        right: 1%;
+        max-width: 133px;
+        top: 99%;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .section-images .hero-images-container-1 {
+        top: 51%;
+        right: 21%;
+    }
+    .section-images .hero-images-container-2 {
+        top: 66%;
+        right: 14%;
+    }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+    .section-images .hero-images-container,
+    .section-images .hero-images-container-1,
+    .section-images .hero-images-container-2 {
+        margin-top: -15vh;
+        margin-left: 80px;
+    }
+    .section-images .hero-images-container {
+        max-width: 300px;
+    }
+    .section-images .hero-images-container-1 {
+        right: 28%;
+        top: 40%;
+    }
+    .section-images .hero-images-container-2 {
+        right: 21%;
+        top: 55%;
+    }
+    .index-page .category-absolute {
+        top: 90vh;
+    }
+}
