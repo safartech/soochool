@@ -264,7 +264,13 @@ let Eleves={
                     lengthMenu: [[10, 20, 50, -1], ['10 Lignes', '20 Lignes', '50 Lignes', "Toutes"]],
                     pageLength: 6,
                     rowReorder: true,
+                    order: [[ 1, 'asc' ]],
                     columnDefs: [
+                        {
+                            searchable: false,
+                            orderable: false,
+                            targets:0
+                        },
                         {
                             targets: -2,
                             visible: false
@@ -280,12 +286,10 @@ let Eleves={
                         }
                     ],
                     columns: [
-                        /*{ data: '#',
-                            render(data,type,row,meta){
-                            // console.log(meta)
-                            return meta.row+1;
-                            }
-                        },*/
+                        {
+                            data: "",
+                            defaultContent: ""
+                        },
                         { data: 'nom'},
                         { data: 'prenoms' },
                         { data: 'sexe' },
@@ -303,23 +307,22 @@ let Eleves={
                         selector: 'td:first-child',
                         blurable: true
                     },*/
-                })
-                    // .rows().invalidate('data')
-                    // .draw(false);
+                });
 
+                table.on('order.dt search.dt', function () {
+                    table.column(0).nodes().each( function (cell, i) {
+                        // console.log(table.columns[0].data)
+                        // console.log(cell)
+                        cell.innerHTML = i+1;
+                        // cell.innerText = i+1;
+                        table.cell(cell).invalidate('dom');
+                    } );
+                } ).draw();
 
-                table.on( 'click', 'tr', function () {
-                    alert( 'Row index: '+table.row( this ).index() );
-                } );
+                /*table.on( 'click', 'tr', function () {
+                 alert( 'Row index: '+table.row( this ).index() );
+                 } );*/
 
-                table.on( 'search.dt', function (a,b,c) {
-                    console.log( 'Row index: '+table.row( this ).index() );
-                    // alert();
-                    // console.log("a",a)
-                    // console.log("b",b)
-                    // console.log("c",c)
-                    $('#filterInfo').html( 'Currently applied global search: '+table.search() );
-                } );
 
                 /*t.button().add(0,{
                     extend: 'print',

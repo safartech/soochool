@@ -306,7 +306,7 @@
                             <table id="myTable" class="table table-condensed table-hover table-bordered table-striped table-fw-widget" data-page-length='10'>
                                 <thead>
                                 <tr>
-                                    {{--<th >#</th>--}}
+                                    <th >#</th>
                                     <th data-class-name="priority">Nom</th>
                                     <th>Prenoms</th>
                                     <th>Sexe</th>
@@ -316,21 +316,6 @@
                                     <th>Classe</th>
                                 </tr>
                                 </thead>
-                                {{--<thead>
-                                <tr>
-                                    <th>Nom</th>
-                                    <th>Prenoms</th>
-                                    <th>Age</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr v-for="ami in amis">
-                                    <td>@{{ ami.nom }}</td>
-                                    <td>@{{ ami.prenoms }}</td>
-                                    <td>@{{ ami.sexe }}</td>
-                                </tr>
-
-                                </tbody>--}}
                             </table>
                         </div>
                     </div>
