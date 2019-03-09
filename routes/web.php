@@ -121,6 +121,8 @@ Route::group(['prefix'=>'ajax'],function(){
     //Eleve
     Route::get('load_eleves','Admin\EleveController@loadEleves');
     Route::post('add_eleve','Admin\EleveController@store');
+    Route::get('Payements','Admin\EleveController@Payement')->name('elevePayement');////////////////////////////////////////////////////////////////
+    Route::get('Payement','Admin\EleveController@index2')->name('indexEleve');
     Route::get('delete_eleve/{id}','Admin\EleveController@destroy');
     Route::put('update_Eleve/{id}','Admin\EleveController@updateEleves');
 
@@ -129,6 +131,10 @@ Route::group(['prefix'=>'ajax'],function(){
     Route::post('add_responsable','Admin\ResponsableController@store');
     Route::get('delete_responsable/{id}','Admin\ResponsableController@destroy');
     Route::put('update_Responsable/{id}','Admin\ResponsableController@updateResponsables');
+
+    //Parent
+    Route::get('PayementParent','Parent\ParentController@Payement')->name('ParentPayement');
+    Route::get('Parent','Parent\ParentController@index')->name('indexParent');
 
     //PERSONNEL
     Route::get('load_personnels','Admin\PersonnelController@loadPersonnels');
@@ -141,6 +147,19 @@ Route::group(['prefix'=>'ajax'],function(){
     Route::put('update_matiere/{id}','Admin\MatiereController@updateMatieres');
     Route::post('add_matiere','Admin\MatiereController@store');
     Route::get('delete_matiere/{id}','Admin\MatiereController@destroy');
+
+
+    Route::post('add_payement','Admin\PayementController@store');
+    Route::post('add_newPayement','Admin\PayementController@addpaye');
+    Route::get('load_payement','Admin\PayementController@loadPayement');
+    Route::put('update_payement/{id}','Admin\PayementController@update');
+
+    /**
+     * Scolarite Espace
+     */
+    Route::get('load_scolarite','Admin\ScolariteController@loadScolarite');
+    Route::put('update_scolarite/{id}','Admin\ScolariteController@update');
+    Route::post('add_scolarite','Admin\ScolariteController@store');
 
     /**
      * EVALUATIONS

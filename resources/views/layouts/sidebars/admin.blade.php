@@ -8,7 +8,8 @@
                         <li ><a href="{{ route('home') }}"><i class="icon mdi mdi-home"></i><span>Home</span></a>
                         <li ><a href="{{ route('voyager.dashboard') }}" target="_blank"><i class="icon mdi mdi-home"></i><span>Dashboard</span></a></li>
                         <li ><a href="{{ route('conseil') }}"><i class="icon mdi mdi-home"></i><span>Assiduites</span></a>
-                        <li ><a href="{{ route('conseil') }}"><i class="icon mdi mdi-home"></i><span>Communication</span></a>
+                        <li ><a href="{{ route('admin.payement.index') }}" ><i class="icon mdi mdi-money"></i><span>Payement</span></a></li>
+                        <li ><a href="{{ route('admin.scolarite.index') }}" ><i class="icon mdi mdi-money-box"></i><span>Scolarite</span></a></li>
                         <li ><a href="{{ route('interventions') }}"><i class="icon mdi mdi-home"></i><span>Interventions</span></a>
                         {{--                        <li ><a href="{{ route('coef') }}"><i class="icon mdi mdi-home"></i><span>Coefficients</span></a>--}}
                         <li ><a href="{{ route('retards.retard') }}"><i class="icon mdi mdi-home"></i><span>Retards</span></a>
