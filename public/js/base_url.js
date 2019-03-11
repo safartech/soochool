@@ -3,6 +3,6 @@
  */
 
 // export let url = "http://sigma.gestschool.com/ajax/";
-export let url = "http://127.0.0.1/soochool/public/ajax/";
+export let url = "http://localhost/soochool/public/ajax/";
 // export let baseUrl = "http://192.168.43.26:2018/ajax/";
 
