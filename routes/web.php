@@ -144,9 +144,18 @@ Route::group(['prefix'=>'ajax'],function(){
 
     //Matiere
     Route::get('load_matieres_datas','Admin\MatiereController@loadMatieresDatas');
+    Route::get('load_poste','Admin\BlogController@loadPost');
     Route::put('update_matiere/{id}','Admin\MatiereController@updateMatieres');
     Route::post('add_matiere','Admin\MatiereController@store');
     Route::get('delete_matiere/{id}','Admin\MatiereController@destroy');
+
+    //Blog
+    Route::post('add_poste','Admin\BlogController@store');
+    Route::post('add_comment','Admin\BlogController@storecomment');
+    Route::put('update_poste/{id}','Admin\BlogController@updateposte');
+    Route::put('loadposte_User/{id}','Admin\BlogController@loaduser');
+    Route::get('delete_post/{id}','Admin\BlogController@destroy');
+    Route::get('delete_comment/{id}','Admin\BlogController@destroyComment');
 
 
     Route::post('add_payement','Admin\PayementController@store');
@@ -286,6 +295,9 @@ Route::group(['middleware'=>'auth'],function(){
 
         Route::get('classes','Admin\ClasseController@liste')->name('classes');
         Route::get('matieres','Admin\MatiereController@index')->name('matieres.index');
+        Route::get('Blog','Admin\BlogController@index')->name('blog');
+        Route::get('Payements','Admin\PayementController@index')->name('payement.index');
+        Route::get('Scolarite','Admin\ScolariteController@index')->name('scolarite.index');
         Route::get('eleves','Admin\EleveController@index')->name('eleves.index');
         Route::get('responsables','Admin\ResponsableController@index')->name('responsables.index');
         Route::get('Personnels','Admin\PersonnelController@index')->name('personnels.index');
@@ -303,8 +315,10 @@ Route::group(['middleware'=>'auth'],function(){
         });
 
     });
-    /*
-     * Tous les lien relatif à l'Espace Parent
+
+       Route::get('Blo','Prof\BlogController@index')->name('blog');
+     /* Tous les lien relatif à l'Espace Parent
+     *
      */
     Route::group(['prefix'=>'parent', 'as'=>'parent.'],function (){
         Route::get('planning','Parent\PlanningController@showPlanningPage')->name('planning');
