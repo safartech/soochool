@@ -76,6 +76,22 @@ Route::get('test',function(){
 
 Route::group(['prefix'=>'ajax'],function(){
 
+    Route::group(['prefix'=>'bulletins'],function (){
+        Route::get('load_datas_for_bloc_moy','Admin\BulletinController@loadDatasForBlocMoy');
+        Route::post('process_bloc_moyennes','Admin\BulletinController@processBlocMoyennes');
+        Route::post('process_bloc_moyennes_for_classes','Admin\BulletinController@processBlocMoyennesForClasses');
+        Route::post('process_bloc_moyennes_gen_for_classes','Admin\BulletinController@processBlocMoyennesGenForClasses');
+        Route::post('determine_ranks_in_classes','Admin\BulletinController@determineRanksInClasses');
+        Route::post('generate_appreciations_for_classes','Admin\BulletinController@generateAppreciationsForClasses');
+        Route::get('process_bloc_moyennes_for_eleve/{eleve_id}/{session_id}','Admin\BulletinController@processBlocMoyennesForEleve');
+        Route::get('process_bloc_moyennes_gen_for_eleve/{eleve_id}/{session_id}','Admin\BulletinController@processBlocMoyennesGenForEleve');
+        Route::put('update_appreciation_generale/{id}','Admin\BulletinController@updateAppreciationGenerale');
+
+        Route::get('print_bulletin_of_eleve/{eleve_id}/{session_id}','Admin\BulletinController@printBulletinOfEleve');
+        Route::post('generate_multiple_bulletin','Admin\BulletinController@generateMultipleBulletin');
+
+    });
+
     Route::get('load_dashboard','Admin\DashboardController@loadDashboard');
 
     /**
@@ -232,9 +248,9 @@ Route::group(['middleware'=>'auth'],function(){
     });
 
     Route::group(['prefix'=>'bulletins','as'=>'bulletins.'],function (){
+        Route::get('moyennes','Admin\BulletinController@showMoyennesPage')->name('moyennes');
         Route::get('appreciations','Admin\BulletinController@showAppreciationsPage')->name('appreciations');
         Route::get('ag','Admin\BulletinController@showgeneralAGPage')->name('ag');
-        Route::get('moyennes','Admin\BulletinController@showMoyennesPage')->name('moyennes');
         Route::get('mg','Admin\BulletinController@showgeneralMGPage')->name('mg');
         Route::get('settings','Admin\BulletinController@showSettingsPage')->name('settings');
         Route::get('impression','Admin\BulletinController@showPrintPage')->name('print');

@@ -4,13 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-
-class Moyenne extends Model
+class TypeAppreciation extends Model
 {
+    //
     public $timestamps = false;
+    protected $table = 'types_appreciations';
     protected $guarded = ['id'];
-
-    public function matiere(){
-        return $this->belongsTo(Matiere::class);
-    }
 }

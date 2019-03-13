@@ -29,7 +29,7 @@ let notes = {
             currentSessionId:null,
             selectedTypeId:1,
             newEvaluation:{
-                take:0,
+                take:1,
                 commentaire:"",
                 date: moment().format("YYYY-MM-DD"),
                 notation:20,
