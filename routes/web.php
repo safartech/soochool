@@ -157,6 +157,9 @@ Route::group(['prefix'=>'ajax'],function(){
     Route::get('delete_post/{id}','Admin\BlogController@destroy');
     Route::get('delete_comment/{id}','Admin\BlogController@destroyComment');
 
+    Route::put('update_settingUser','Admin\AccountController@update');
+    Route::get('load_mail','Admin\AccountController@load_mail');
+
 
     Route::post('add_payement','Admin\PayementController@store');
     Route::post('add_newPayement','Admin\PayementController@addpaye');
@@ -301,6 +304,7 @@ Route::group(['middleware'=>'auth'],function(){
         Route::get('eleves','Admin\EleveController@index')->name('eleves.index');
         Route::get('responsables','Admin\ResponsableController@index')->name('responsables.index');
         Route::get('Personnels','Admin\PersonnelController@index')->name('personnels.index');
+        Route::get('SettingUser','Admin\AccountController@index')->name('accountsetting');
 
     });
     /*

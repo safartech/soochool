@@ -27,6 +27,7 @@
                                 {{ csrf_field() }}
                             </form>
                         </li>
+                        <li ><a href="{{ route('admin.accountsetting') }}" ><i class="icon mdi mdi-account"></i><span>Parametre Compte</span></a></li>
                     </ul>
                 </div>
             </div>
