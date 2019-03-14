@@ -22,7 +22,7 @@
                     <div class="panel-heading panel-heading-divider">Préparation des bulletins<span class="panel-subtitle">Calcul des moyennes des élèves pour chaque matieres.</span></div>
                     <div class="panel-body">
 
-                        <div class="col-lg-4">
+                        <div class="col-lg-3">
                             <div class=""><label class="control-label">Classes</label></div>
                             <div class="">
                                 <select id="select2-classes" multiple class="select2" >
@@ -45,7 +45,7 @@
 
 
                         </div>
-                        <div class="col-lg-5">
+                        <div class="col-lg-6">
                             <div class=""><label>-</label></div>
                             <button class="btn btn-xl btn-default"  @click="refrech()">Refresh</button>
                             <button class="btn btn-xl btn-primary" :disabled="disabledBtn" @click="startProcess()">Moyennes de classe</button>
