@@ -1,13 +1,13 @@
 /**
  * Created by Aleck on 20/02/2019.
  */
-import {url} from '../base_url.js'
+import {url} from '../../base_url.js'
 let instance = axios.create({
     baseURL : url
 });
 
-let Setting={
-    template:"#setting",
+let Account={
+    template:"#account",
     data(){
         return {
             seting:{
@@ -36,11 +36,26 @@ let Setting={
         para(){
 
             instance.put('update_settingUser',this.seting).then(res=> {
-                $.gritter.add({
-                    title:"Modification",
-                    time:2000,
-                    text:"mod",
-                    class_name:"color success"});
+                if(res.data == 200){
+                    $.gritter.add({
+                        title:"Modification",
+                        time:2000,
+                        text:"Mdification avec success",
+                        class_name:"color success"});
+                }else if(res.data == 0) {
+                    $.gritter.add({
+                        title:"Modification",
+                        time:4000,
+                        text:"Ancien mot de passe incorrecte",
+                        class_name:"color danger"});
+                }else {
+                    $.gritter.add({
+                        title:"Modification",
+                        time:2000,
+                        text:"Une erreur s'est produite",
+                        class_name:"color danger"});
+                }
+
 
 
             }).catch(err=>{
@@ -57,10 +72,6 @@ let Setting={
         loadDatas(){
             instance.get('load_mail').then(res=>{
                 this.seting.email=res.data
-
-
-
-
 
             }).catch(err=>{
                 console.log(err.response.data);
@@ -89,7 +100,7 @@ new Vue(
 
         },
         components:{
-            Setting
+            Account
         }
 
 

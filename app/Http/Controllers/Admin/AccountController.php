@@ -19,7 +19,7 @@ class AccountController extends Controller
      */
     public function index()
     {
-        return view('espaces.settingUser');
+        return view('espaces.user.account');
     }
 
     /**
@@ -79,16 +79,16 @@ class AccountController extends Controller
           if($request->password==''|| $request->password==null){
               $user->email=$request->email;
               $user->save();
-              return $user;
+              return Response::HTTP_OK;
           }
           else{
               $user->email=$request->email;
               $user->password=bcrypt($request->password);
               $user->save();
-              return $user;
+              return Response::HTTP_OK;
           }
       }
-        return Response::HTTP_BAD_REQUEST;
+        return 0;
     }
 
     public function load_mail(){

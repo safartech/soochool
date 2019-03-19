@@ -1,10 +1,8 @@
 @extends("default")
-@section('css')
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/lib/summernote/summernote.css')}}"/>
-@endsection
+@section('css')@endsection
 
 @section('js')
-    <template id="setting">
+    <template id="account">
 
         <div class="">
             <div class="">
@@ -18,7 +16,7 @@
 
 
                                 <div class="form-group">
-                                    <label for="">  eMail</label>
+                                    <label for="">  Email</label>
                                     <input type="email" v-model="seting.email"  required=""  autocomplete="off" class="form-control">
                                 </div>
                                 <div class="form-group">
@@ -35,16 +33,15 @@
                                 </div>
 
 
-                                <div class="form-group xs-pt-10">
+                                {{--<div class="form-group xs-pt-10">
                                     <div class="be-checkbox">
-
                                         <label for="remember">Vos identifiants seront changé selon les <a href="#">termes accords</a> </label>
                                     </div>
-                                </div>
+                                </div>--}}
 
                             </div>
                         </div>
-                        <div class="splash-footer">&copy; 2016 Your Company</div>
+                        <div class="splash-footer">&copy; 2016 SAFARTECH</div>
                     </div>
                 </div>
             </div>
@@ -56,14 +53,13 @@
     <script src="{{asset('assets/lib/summernote/summernote-ext-beagle.js')}}" type="text/javascript"></script>
     <script src="{{('assets/lib/bootstrap-markdown/js/bootstrap-markdown.js')}}" type="text/javascript"></script>
     <script src="{{asset('assets/lib/markdown-js/markdown.js')}}" type="text/javascript"></script>
-    <script src="{{ asset('js/vues/settingUser.js') }}" type="module"></script>
-    {{--<script src="{{ asset('js/vues/admin/chat.js') }}" type="module"></script>--}}
+    <script src="{{ asset('js/vues/user/account.js')}}" type="module"></script>
 
 @endsection
 
 @section('content')
 
-    <Setting></Setting>
+    <Account></Account>
 
 
 @endsection
