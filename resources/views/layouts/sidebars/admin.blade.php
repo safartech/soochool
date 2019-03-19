@@ -10,12 +10,17 @@
                         <li ><a href="{{ route('conseil') }}"><i class="icon mdi mdi-home"></i><span>Assiduites</span></a>
                         <li ><a href="{{ route('interventions') }}"><i class="icon mdi mdi-home"></i><span>Interventions</span></a>
                         {{--                        <li ><a href="{{ route('coef') }}"><i class="icon mdi mdi-home"></i><span>Coefficients</span></a>--}}
-                        <li ><a href="{{ route('retards.retard') }}"><i class="icon mdi mdi-home"></i><span>Retards</span></a>
                         <li ><a href="{{ route('admin.classes') }}"><i class="icon mdi mdi-home"></i><span>Classes</span></a>
                         <li ><a href="{{ route('admin.matieres.index') }}" ><i class="icon mdi mdi-book"></i><span>Matières</span></a></li>
                         <li ><a href="{{ route('admin.eleves.index') }}" ><i class="icon mdi mdi-graduation-cap"></i><span>Eleves</span></a></li>
                         <li ><a href="{{ route('admin.responsables.index') }}" ><i class="icon mdi mdi-account-add"></i><span>Responsables</span></a></li>
                         <li ><a href="{{ route('admin.personnels.index') }}" ><i class="icon mdi mdi-account"></i><span>Personnels</span></a></li>
+                        <li class="parent"><a href="#"><i class="icon mdi mdi mdi-layers"></i><span>Vie Scolaire</span></a>
+                            <ul class="sub-menu">
+                                <li><a href="{{ route('retards') }}">Retards</a></li>
+                                <li><a href="{{ route('absences') }}">Absences</a></li>
+                            </ul>
+                        </li>
                         <li class="parent"><a href="#"><i class="icon mdi mdi mdi-layers"></i><span>Bulletins</span></a>
                             <ul class="sub-menu">
                                 <li><a href="{{ route('bulletins.moyennes') }}">Bloc. moyennes</a></li>
