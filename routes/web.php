@@ -13,6 +13,8 @@
 
 Route::get('shuffle','AppController@noteShuffle');
 
+//Route::get('get_books','Admin\BulletinController@getBooks');
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -89,6 +91,7 @@ Route::group(['prefix'=>'ajax'],function(){
 
         Route::get('print_bulletin_of_eleve/{eleve_id}/{session_id}','Admin\BulletinController@printBulletinOfEleve');
         Route::post('generate_multiple_bulletin','Admin\BulletinController@generateMultipleBulletin');
+        Route::get('print_multiple_bulletin/{classe_id}/{session_id}','Admin\BulletinController@printMultipleBulletin');
 
     });
 

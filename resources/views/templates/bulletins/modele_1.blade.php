@@ -9,9 +9,6 @@
     <title>Bulletin</title>
 </head>
 
-
-<script src="{{ asset('js/plugins/jdpdf/jspdf.min.js') }}"></script>
-<script src="{{ asset('assets/lib/jquery/jquery.min.js') }}" type="text/javascript"></script>
 <script>
     /*window.onload = function () {
         var doc = new jsPDF();
@@ -42,48 +39,62 @@
 </script>
 
 <style>
-    /*@page { margin: 10px; }*/
-    @page {
-        /*padding-bottom: 0px;*/
-        /*margin-bottom: 0px;*/
+    .page-break-before {
+        page-break-before: always;
     }
-    @html{
-    /*padding-bottom:  50px;*/
+
+    .page-break-after  {
+        page-break-after: always;
     }
+
+
+
+    @page { margin-top: 150px; }
+    {{--@html { margin-top: 150px; }--}}
+
     html{
-        /*margin:0px;*/
-    }
-    body{
-        font-size: 10px;
-        margin-top: 0px;
-        margin-bottom: 0px;
-        padding-top: 0px;
-        padding-bottom: 0px;
+        /*margin-top:0px;*/
     }
     .grey{
         background-color: #F0F0F0;
     }
-    .eleve{
-        border: solid 2px grey;
-        padding: 10px 10px;
+
+    #wrapper{
+        /*position: absolute;*/
     }
+
+    body .notes{
+        /*margin: 0px;*/
+        font-size: 13px;
+        /*margin-top: 0px;
+        margin-bottom: 0px;
+        padding-top: 0px;
+        padding-bottom: 0px;*/
+    }
+
+    table{
+        margin-left: auto;
+        margin-right: auto;
+        /*display: block;*/
+    }
+
     tr,td{
         padding: 100px;
     }
 </style>
 
 <body >
-<div id="bull" class="container ">
+<div id="wrapper" class="container">
     <div class="row">
         <br>
         <br>
         <div class="row">
             <div class="col-lg-12">
-                <h4 class="text-center" style="color: darkorange; font-size: x-large;font-family: 'Britannic Bold'"><b>BULLETIN DU {{ $session->nom }}</b></h4>
+                <p class="text-center" style="color: darkorange; font-size: x-large;font-family: 'Britannic Bold'"><b>BULLETIN DU {{ $session->nom }}</b></p>
             </div>
             <div class="col-lg-12 text-center">
                 <div class="col-lg-3 pull-left">
-                    <p class="col-lg-12 pull-left" ><span style="font-size: 16px"><b> {{ $eleve->nom_complet }}</b></span></p>
+                    <h6 class="col-lg-12 pull-left" ><span style="font-size: 16px"><b> {{ $eleve->nom_complet }}</b></span></h6>
                     <br>
                     <br>
                     <p class="col-lg-12 pull-left"> <span style="font-size: 11px"> @if($eleve->date_nsce) Né@if($eleve->sexe=="F")e @endif le {{ $eleve->date_nsce->format('d-m-Y') ?? ""  }} @endif </span></p>
@@ -104,7 +115,7 @@
     </div>
     <div class="row text-center">
         <div class="col-lg-12">
-            <table class="table-bordered table-condensed col-lg-12 ">
+            <table class="table-bordered table-condensed col-lg-12 notes">
                 <thead>
                 <tr>
                     <th  class="text-center">Matières</th>
@@ -264,16 +275,16 @@
         <br>
         <div class="col-lg-12">
             <div class="col-lg-6 ">
-                <h5 class="pull-left"><b>Appréciations du Conseil de Classe</b></h5>
+                <p class="pull-left"><b>Appréciations du Conseil de Classe</b></p>
             </div>
             <div class="col-lg-6 ">
                 <div class="pull-right">
-                    <h5 >Lomé le     </h5>
-                    <h5 >Le Directeur</h5>
-                    {{--<br>--}}
-                    {{--<br>--}}
-                    {{--<br>--}}
-                    {{--<h5><b>Yao M. TSATSU</b></h5>--}}
+                    <p >Lomé le     </p>
+                    <p >Le Directeur</p>
+                    <br>
+                    <br>
+                    <br>
+                    <p><b>M. Albert EINSCHTEIN</b></p>
                 </div>
             </div>
         </div>

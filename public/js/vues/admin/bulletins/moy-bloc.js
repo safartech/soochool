@@ -38,7 +38,9 @@ let MoyBloc = {
                 retards:null,
                 absences:null
             },
-            selectedEleveConseil:{}
+            selectedClasse:{},
+            selectedEleveConseil:{},
+            elevesOfClasse:[],
         }
     },
     mounted(){
@@ -56,6 +58,9 @@ let MoyBloc = {
         disabledBtn(){
             return this.selectedSessionId==null
         },
+        readyBtn(){
+            return this.selectedSessionId!=null && this.selectedClasse.id!=null;
+        }
 
     },
     methods:{
@@ -68,6 +73,15 @@ let MoyBloc = {
                 // console.log(this.selectedClasses)
                 this.filterElevesList(this.selectedClasses)
             });
+
+            $('#select2-classe').select2().on('change',(e)=>{
+                // alert()
+                let classeId = $('#select2-classe').val()
+                this.selectedClasse = this.classes.find(c=>c.id==classeId)
+                // console.log(this.selectedClasses)
+                this.getElevesOfClasse(classeId)
+            });
+
             $('#select2-session').select2().on('change',(e)=>{
                 this.selectedSessionId = $('#select2-session').val()
                 this.selectedSession = this.sessions.find(s=>s.id==this.selectedSessionId)
@@ -236,6 +250,10 @@ let MoyBloc = {
                     time:3000
                 })
             })
+        },
+
+        getElevesOfClasse(classeId){
+            this.elevesOfClasse = this.eleves.filter(e=>e.classe_id==classeId)
         },
 
         filterElevesList(classes){
@@ -548,11 +566,16 @@ let MoyBloc = {
             printDoc.output("dataurlnewwindow");*/
         },
 
+        multiplePrintLink(){
+            return url+'bulletins/print_multiple_bulletin/'+this.selectedClasse.id+"/"+this.selectedSessionId;
+        },
+
         printMultipleBulletin(){
+            // alert()
             let data = {}
             data.classes= this.selectedClasses
             data.session_id = this.selectedSessionId
-            return url+'bulletins/generate_multiple_bulletin';
+            // return url+'bulletins/generate_multiple_bulletin';
             $("#loader").modal('show')
 
             instance.post('bulletins/generate_multiple_bulletin',data).then(res=>{

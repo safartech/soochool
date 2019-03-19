@@ -1,4 +1,9 @@
 <?php
+use Illuminate\Support\Facades\Session;
+//$year = Session::get('year','as_2018_2019_');
+//$year = \session('year','as_2018_2019_');
+//$year = 0;
+//$year = app('session')->get('year','as_2018_2019');
 
 return [
 
@@ -39,7 +44,7 @@ return [
             'prefix' => '',
         ],
 
-        'mysql' => [
+        'as_2018_2019_' => [
             'driver' => 'mysql',
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),
@@ -49,10 +54,28 @@ return [
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
-            'prefix' => '',
+            'prefix' => env('DB_TABLE_PREFIX','as_2018_2019_'),
             'strict' => true,
             'engine' => 'InnoDB',
         ],
+
+         'as_2019_2020_' => [
+            'driver' => 'mysql',
+            'host' => env('DB_HOST', '127.0.0.1'),
+            'port' => env('DB_PORT', '3306'),
+            'database' => env('DB_DATABASE', 'forge'),
+            'username' => env('DB_USERNAME', 'forge'),
+            'password' => env('DB_PASSWORD', ''),
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => 'as_2019_2020_',
+            'strict' => true,
+            'engine' => 'InnoDB',
+        ],
+
+
+
 
         'pgsql' => [
             'driver' => 'pgsql',

@@ -51,7 +51,9 @@
                             <button class="btn btn-xl btn-primary" :disabled="disabledBtn" @click="startProcess()">Moyennes de classe</button>
                             {{--<button class="btn btn-xl btn-warning" :disabled="disabledBtn" @click="loopProcess()">Loop 1</button>--}}
                             <button class="btn btn-xl btn-success" :disabled="disabledBtn" @click="moyGenCalcForClasses()">Moyennes Génerales</button>
-                            <button class="btn btn-xl btn-danger" :disabled="disabledBtn" @click="showAppreciationModal()">Appréciations</button>
+                            <button class="btn btn-xl btn-warning" :disabled="disabledBtn" @click="showAppreciationModal()">Appréciations</button>
+                            {{--<button class="btn btn-xl btn-danger" :disabled="disabledBtn" @click="printMultipleBulletin()">Impression</button>--}}
+                            {{--<a :href="multiplePrintLink()" target=" _blank" class="btn btn-xl btn-danger" :disabled="disabledBtn">Impression</a>--}}
 
                             {{--<form :action="printMultipleBulletin()" method="post">
                                 {{ csrf_field() }}
@@ -67,7 +69,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-12"  id="mydiv">
+            <div class="col-sm-12">
                 <div class="panel panel-default">
                     <div class="panel-heading"></div>
                     <div class="tab-container">
@@ -228,7 +230,26 @@
                                 </table>
                             </div>
                             <div id="printer" class="tab-pane">
-                                <h4>Listes des élèves des classes sélectionnées.</h4>
+                                <div class="col-lg-12">
+                                    <div class="col-lg-4">
+                                        <div class=""><label class="control-label">Classes</label></div>
+                                        <div class="">
+                                            <select id="select2-classe" class="select2" >
+                                                <option :value="null" disabled selected  >Selectionnez une classe</option>
+                                                <option v-for="classe in classes" :value="classe.id">@{{ classe.nom }}</option>
+                                                {{--<optgroup v-for="niveau in niveaux" :label="niveau.nom">
+                                                    <option v-for="classe in niveau.classes" :value="classe.id">@{{ classe.nom }}</option>
+                                                </optgroup>--}}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class=""><label>-</label></div>
+                                        <a :href="multiplePrintLink()" target="_blank" class="btn btn-xl btn-danger" v-if="readyBtn">Imprimer les bulletins pour cette classes</a>
+                                    </div>
+
+                                </div>
+                                <h4>Listes des élèves de la classe sélectionnée.</h4>
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
@@ -239,15 +260,15 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr v-for="(eleve,i) in filteredEleves">
+                                    <tr v-for="(eleve,i) in elevesOfClasse">
                                         <td class="text-center">@{{ i+1 }}</td>
                                         <td>@{{ eleve.nom_complet }}</td>
                                         <td>@{{ eleve.classe.nom }}</td>
                                         <td>
                                             {{--<button class="btn btn-sm btn-primary" :disabled="disabledBtn" @click="printBuelletinForEleve(eleve)">Imprimer</button>--}}
-                                            <a :href="print_bulletin_of_eleve(eleve)" download="FileName" target="_blank" class="btn btn-sm btn-primary" :disabled="disabledBtn">Imprimer</a>
-                                            <button class="btn btn-sm btn-warning" :disabled="disabledBtn" @click="processForEleve(eleve.id)">Calculer</button>
-                                            <button class="btn btn-sm btn-success" :disabled="disabledBtn" @click="moyGenCalcForEleve(eleve.id)">Calculer</button>
+                                            <a :href="print_bulletin_of_eleve(eleve)" target="_blank" class="btn btn-sm btn-primary" v-if="!disabledBtn">Imprimer</a>
+                                            {{--<button class="btn btn-sm btn-warning" :disabled="disabledBtn" @click="processForEleve(eleve.id)">Calculer</button>--}}
+                                            {{--<button class="btn btn-sm btn-success" :disabled="disabledBtn" @click="moyGenCalcForEleve(eleve.id)">Calculer</button>--}}
                                         </td>
                                     </tr>
                                     </tbody>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Book;
 use App\Classe;
 use App\Conseil;
 use App\Dispense;
@@ -19,6 +20,12 @@ use App\TypeAppreciation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\App;
+
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
+use Knp\Snappy\Pdf;
+
+
 
 class BulletinController extends Controller
 {
@@ -420,19 +427,30 @@ class BulletinController extends Controller
 //        dd(number_format($obligatoires->sum('moy_gen'),2));
 //        dd(number_format($obligatoires[0]->moyennes->sum('moy_gen'),2));
 
-        $pdf = App::make('dompdf.wrapper');
-        $pdf = $pdf->loadView('templates.bulletins.modele_1',compact("eleve",'moyennes','conseil','obligatoires','facultatives','prof','resultats','resultat','session','classe'));
-        return $pdf->download($eleve->nom_complet.'.pdf');
+//        $myProjectDirectory = 'C:\Users\User\AppData\Local\Temp';
+//        $snappy = new Pdf($myProjectDirectory . '/vendor/h4cc/wkhtmltopdf-amd64/bin/wkhtmltopdf-amd64');
+
+        $pdf = App::make('snappy.pdf.wrapper');
+        $pdf->loadView('templates.bulletins.modele_1', compact("eleve",'moyennes','conseil','obligatoires','facultatives','prof','resultats','resultat','session','classe'));
+        return $pdf->stream($eleve->nom_complet.'.pdf');
+
+
+//        $pdf = App::make('dompdf.wrapper');
+//        $pdf = $pdf->loadView('templates.bulletins.modele_1',compact("eleve",'moyennes','conseil','obligatoires','facultatives','prof','resultats','resultat','session','classe'));
+//        return $pdf->stream();
+//        return $pdf->download($eleve->nom_complet.'.pdf');
 //        return view('templates.bulletins.modele_1',compact("eleve",'moyennes','conseil','obligatoires','facultatives','prof','resultats','resultat','session','classe'));
     }
 
     public function generateMultipleBulletin(Request $request){
-//        return dd($request->input());
+        return 0;
+        return dd($request->input());
         $classesIds = $request->classes;
         $sessionId = $request->session_id;
         $session = Session::find($sessionId);
         $classes = Classe::with('eleves','niveau.matieres')->whereIn('id',$classesIds)->get();
 //        dd($classes);
+        $ELEVES = [];
         foreach ($classes as $classe){
             foreach ($classe->eleves as $eleve){
                 $eleveId = $eleve->id;
@@ -458,13 +476,130 @@ class BulletinController extends Controller
                 $resultat = General::where('eleve_id',$eleveId)->where('session_id',$sessionId)->first();
                 $conseil = Conseil::where('eleve_id',$eleveId)->where('session_id',$sessionId)->first();
 
-                $pdf = App::make('dompdf.wrapper');
-                $pdf = $pdf->loadView('templates.bulletins.modele_1',compact("eleve",'moyennes','conseil','obligatoires','facultatives','prof','resultats','resultat','session','classe'));
-                $pdf->download($eleve->nom_complet.'.pdf');
+                $eleve->obligatoires = $obligatoires;
+                $eleve->facultatives = $facultatives;
+                $eleve->prof = $prof;
+                $eleve->resultats = $resultats;
+                $eleve->resultat = $resultat;
+                $eleve->conseil = $conseil;
+
+                $ELEVES[] = $eleve;
+
+
             }
         }
 
+        dd($ELEVES);
+        $pdf = App::make('dompdf.wrapper');
+        $pdf = $pdf->loadView('templates.bulletins.modele_1',compact("eleve",'moyennes','conseil','obligatoires','facultatives','prof','resultats','resultat','session','classe'));
+        $pdf->download($eleve->nom_complet.'.pdf');
         return $classesIds;
+    }
+
+    public function printMultipleBulletinForManyClasses(){
+//        return 0;
+//        return dd($request->input());
+//        $classesIds = $request->classes;
+        $classesIds = [1];
+//        $sessionId = $request->session_id;
+        $sessionId = 1;
+        $session = Session::find($sessionId);
+        $classes = Classe::with('eleves','niveau.matieres')->whereIn('id',$classesIds)->get();
+//        dd($classes);
+        $ELEVES = [];
+        foreach ($classes as $classe){
+            foreach ($classe->eleves as $eleve){
+                $eleveId = $eleve->id;
+                $eleve = Eleve::find($eleveId);
+                $classe = Classe::with('prof')->withCount('eleves')->find($eleve->classe_id);
+                $classeId = $classe->id;
+                $niveauId = $classe->niveau_id;
+
+                $obligatoires = Moyenne::with(['matiere.profs'=>function($q) use ($classeId){
+                    $q->where('classe_id',$classeId);
+                }])->whereHas('matiere',function ($q){
+                    $q->where('obligatoire',1);
+                })->where('eleve_id',$eleveId)->where('session_id',$sessionId)->get();
+
+                $facultatives = Moyenne::with(['matiere.profs'=>function($q) use ($classeId){
+                    $q->where('classe_id',$classeId);
+                }])->whereHas('matiere',function ($q){
+                    $q->where('obligatoire',0);
+                })->where('eleve_id',$eleveId)->where('session_id',$sessionId)->get();
+
+                $prof = $classe->prof;
+                $resultats = General::where('classe_id',$classeId)->where('session_id',$sessionId)->get();
+                $resultat = General::where('eleve_id',$eleveId)->where('session_id',$sessionId)->first();
+                $conseil = Conseil::where('eleve_id',$eleveId)->where('session_id',$sessionId)->first();
+
+                $eleve->obligatoires = $obligatoires;
+                $eleve->facultatives = $facultatives;
+                $eleve->prof = $prof;
+                $eleve->resultats = $resultats;
+                $eleve->resultat = $resultat;
+                $eleve->conseil = $conseil;
+                $eleve->classe = $classe;
+
+                $ELEVES[] = $eleve;
+            }
+        }
+
+        $pdf = App::make('snappy.pdf.wrapper');
+        $pdf->loadView('templates.bulletins.multi_0', compact('ELEVES','session'));
+        return $pdf->inline('bulletins.pdf');
+
+//        dd($ELEVES);
+//        $pdf = App::make('dompdf.wrapper');
+//        $pdf = $pdf->loadView('templates.bulletins.multi_0', compact('ELEVES','session'));
+//        return $pdf->stream('bulletins.pdf');
+//        return $pdf->download('bulletins.pdf');
+//        $pdf->download($eleve->nom_complet.'.pdf');
+//        return $classesIds;
+    }
+
+    public function printMultipleBulletin($classeId,$sessionId){
+        $session = Session::find($sessionId);
+        $classe = Classe::with('eleves','niveau.matieres')->find($classeId);
+//        $eleves = $classe->eleves;
+        $ELEVES = [];
+        foreach ($classe->eleves as $eleve){
+            $eleveId = $eleve->id;
+            $eleve = Eleve::find($eleveId);
+            $classe = Classe::with('prof')->withCount('eleves')->find($eleve->classe_id);
+            $classeId = $classe->id;
+            $niveauId = $classe->niveau_id;
+
+            $obligatoires = Moyenne::with(['matiere.profs'=>function($q) use ($classeId){
+                $q->where('classe_id',$classeId);
+            }])->whereHas('matiere',function ($q){
+                $q->where('obligatoire',1);
+            })->where('eleve_id',$eleveId)->where('session_id',$sessionId)->get();
+
+            $facultatives = Moyenne::with(['matiere.profs'=>function($q) use ($classeId){
+                $q->where('classe_id',$classeId);
+            }])->whereHas('matiere',function ($q){
+                $q->where('obligatoire',0);
+            })->where('eleve_id',$eleveId)->where('session_id',$sessionId)->get();
+
+            $prof = $classe->prof;
+            $resultats = General::where('classe_id',$classeId)->where('session_id',$sessionId)->get();
+            $resultat = General::where('eleve_id',$eleveId)->where('session_id',$sessionId)->first();
+            $conseil = Conseil::where('eleve_id',$eleveId)->where('session_id',$sessionId)->first();
+
+            $eleve->obligatoires = $obligatoires;
+            $eleve->facultatives = $facultatives;
+            $eleve->prof = $prof;
+            $eleve->resultats = $resultats;
+            $eleve->resultat = $resultat;
+            $eleve->conseil = $conseil;
+            $eleve->classe = $classe;
+
+            $ELEVES[] = $eleve;
+        }
+
+        $pdf = App::make('snappy.pdf.wrapper');
+        $pdf->loadView('templates.bulletins.multi_0', compact('ELEVES','session'));
+        return $pdf->inline('bulletins.pdf');
     }
 }
 
