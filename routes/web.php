@@ -209,6 +209,14 @@ Route::group(['prefix'=>'ajax'],function(){
     Route::get('load_bulletins_datas_from_parent','Parent\EvaluationController@loadBulletinsDatasFromParent');
     Route::get('load_evaluations_parent/{eleve_id}/{matiere_id}/{session_id}','Parent\EvaluationController@loadEvaluations');
 
+    //ABSENCES
+    Route::get('load_planning_for_classes_with_absences','Ajax\AbsenceController@loadPlanningWithAbsences');
+    Route::post('set_absents','Ajax\AbsenceController@setAbsents');
+
+    //RETARD
+    Route::get('load_retards_datas','Ajax\RetardController@loadDatas');
+    Route::post('set_eleve_as_late','Ajax\RetardController@setEleveAsLate');
+
 
 });
 
@@ -219,17 +227,14 @@ Route::group(['prefix'=>'ajax'],function(){
 
 Route::group(['middleware'=>'auth'],function(){
 
+    Route::get('conseil','BasicController@showConseilPage')->name('conseil');
+    Route::get('retards','BasicController@showRetardsPages')->name('retards');
+    Route::get('absences','BasicController@showAbsencesPages')->name('absences');
 
     Route::get('interventions','BasicController@showInterventionsPage')->name('interventions');
     Route::get('coef','BasicController@showCoefPage')->name('coef');
     Route::get('conseil','BasicController@showConseilPage')->name('conseil');
-    /*
-    * Retards
-    */
-    Route::group(['prefix'=>"retards",'as'=>'retards.'],function(){
-        //  Route::get('eleves','Retard\RetardController@showEleves')->name('eleves');
-        Route::get('retard','Retard\RetardController@showRetardPage')->name('retard');
-    });
+    
 
     Route::group(['prefix'=>'bulletins','as'=>'bulletins.'],function (){
         Route::get('appreciations','Admin\BulletinController@showAppreciationsPage')->name('appreciations');
