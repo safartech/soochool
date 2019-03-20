@@ -171,13 +171,12 @@ Route::group(['prefix'=>'ajax'],function(){
 
     //Matiere
     Route::get('load_matieres_datas','Admin\MatiereController@loadMatieresDatas');
-
+    Route::get('load_poste','Admin\BlogController@loadPost');
     Route::put('update_matiere/{id}','Admin\MatiereController@updateMatieres');
     Route::post('add_matiere','Admin\MatiereController@store');
 
 
     //Blog
-    Route::get('load_poste','Admin\BlogController@loadPost');
     Route::post('add_poste','Admin\BlogController@store');
     Route::post('add_comment','Admin\BlogController@storecomment');
     Route::put('update_poste/{id}','Admin\BlogController@updateposte');
@@ -343,7 +342,6 @@ Route::group(['middleware'=>'auth'],function(){
         Route::get('eleves','Admin\EleveController@index')->name('eleves.index');
         Route::get('responsables','Admin\ResponsableController@index')->name('responsables.index');
         Route::get('Personnels','Admin\PersonnelController@index')->name('personnels.index');
-
         Route::get('Blog','Admin\BlogController@index')->name('blog');
         Route::get('Payements','Admin\PayementController@index')->name('payement.index');
         Route::get('Scolarite','Admin\ScolariteController@index')->name('scolarite.index');

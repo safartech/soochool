@@ -40,10 +40,10 @@ let Blog={
     methods:{
 
         showAddPanel(){
-          this.affichage=false,
-              this.ajout=true,
-              this.vue=false,
-              this.modif=false
+            this.affichage=false,
+                this.ajout=true,
+                this.vue=false,
+                this.modif=false
         },
         showAllPost(){
             this.affichage=true,
@@ -66,6 +66,13 @@ let Blog={
                 this.loadDatas();
                 this.comment.push(res.data)
 
+            }).catch(err=>{
+                $.gritter.add({
+                    title:"Erreur!!!!",
+                    time:2000,
+                    text:"Echec lors du commentaire!",
+                    class_name:"color danger"});
+                console.log(err.response.data)
             })
 
 
@@ -145,7 +152,7 @@ let Blog={
             instance.put('loadposte_User/'+this.infopost.id,this.infopost).then(res=> {
                 this.comment=res.data.comment
                 this.nom=res.data.user
-               console.log(this.comment)
+                console.log(this.comment)
                 this.loadDatas();
             })
 
@@ -156,7 +163,7 @@ let Blog={
         },
 
         del(post){
-                this.deletepost=post
+            this.deletepost=post
             instance.get('delete_post/'+this.deletepost.id).then(res=>{
                 this.loadDatas()
                 $.gritter.add({
@@ -177,6 +184,8 @@ let Blog={
             this.newComment.post_id=com.id
             this.deletecomment=com
             instance.get('delete_comment/'+this.deletecomment.id).then(res=>{
+                var bb=this.comment.indexOf(5);
+                this.comment.split(bb,1)
                 this.loadDatas()
                 $.gritter.add({
                     title:"Suppresion",
@@ -204,7 +213,7 @@ let Blog={
 
 
             }).catch(err=>{
-          console.log(err.response.data);
+                console.log(err.response.data);
             })
 
 

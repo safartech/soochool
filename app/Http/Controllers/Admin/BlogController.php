@@ -72,11 +72,11 @@ class BlogController extends Controller
 
     public  function loaduser(Request $request,$id)
     {
-           $res= Post::find($id);
-           $user=User::get()->where('id','=',$res->author_id);
-           $comment=Comment::get()->where('post_id','=',$res->id);
+        $res= Post::find($id);
+        $user=User::get()->where('id','=',$res->author_id);
+        $comment=Comment::get()->where('post_id','=',$res->id);
 
-            return  compact('user','comment');
+        return  compact('user','comment');
     }
 
     public function updateposte(Request $request,$id)
