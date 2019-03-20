@@ -43,10 +43,6 @@ class Eleve extends Model
         return $this->belongsToMany('App\Competence','epc','eleve_id')->withPivot(['session_id','validation']);
     }
 
-    public function absences(){
-        return $this->belongsToMany('App\Seance','absences','seance_id','eleve_id')->withPivot(['motif']);
-    }
-
     public function retardCounts(){
         return $this->hasMany(NbreRetard::class,'eleve_id');
     }
@@ -59,6 +55,21 @@ class Eleve extends Model
         return $this->hasMany(Conseil::class);
     }
 
+    public function abs(){
+        return $this->withCount('absents');
+    }
+
+    public function absents(){
+        return $this->hasMany(Absent::class);
+    }
+
+    public function absences(){
+        return $this->hasMany(Absence::class,'eleve_id');
+    }
+
+    public function retards(){
+        return $this->hasMany(Retard::class);
+    }
 
     protected static function boot()
     {
