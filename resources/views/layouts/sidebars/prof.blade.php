@@ -6,6 +6,8 @@
                     <ul class="sidebar-elements">
                         <li class="divider">Menu</li>
                         <li class=""><a href="#"><i class="icon mdi mdi-home"></i><span>Home</span></a></li>
+
+                        <li class=""><a href="{{ route('admin.blog') }}"><i class="icon mdi mdi-home"></i><span>Blog</span></a></li>
                         <li class="parent"><a href="#"><i class="icon mdi mdi mdi-layers"></i><span>Evaluations</span></a>
                             <ul class="sub-menu">
                                 <li><a href="{{ route('prof.evaluations.notes') }}">Notes</a></li>
@@ -24,6 +26,8 @@
                                 {{ csrf_field() }}
                             </form>
                         </li>
+
+                        <li ><a href="{{ route('admin.accountsetting') }}" ><i class="icon mdi mdi-account"></i><span>Parametre Compte</span></a></li>
 
                     </ul>
                 </div>

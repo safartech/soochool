@@ -121,6 +121,14 @@ Route::group(['prefix'=>'ajax'],function(){
     //Eleve
     Route::get('load_eleves','Admin\EleveController@loadEleves');
     Route::post('add_eleve','Admin\EleveController@store');
+
+    //Paiement
+    Route::get('Payements','Admin\EleveController@Payement')->name('elevePayement');////////////////////////////////////////////////////////////////
+    Route::get('Payement','Admin\EleveController@index2')->name('indexEleve');
+    Route::get('PayementParent','Parent\ParentController@Payement')->name('ParentPayement');
+
+
+    //Annexe eleve
     Route::get('delete_eleve/{id}','Admin\EleveController@destroy');
     Route::put('update_Eleve/{id}','Admin\EleveController@updateEleves');
 
@@ -130,6 +138,12 @@ Route::group(['prefix'=>'ajax'],function(){
     Route::get('delete_responsable/{id}','Admin\ResponsableController@destroy');
     Route::put('update_Responsable/{id}','Admin\ResponsableController@updateResponsables');
 
+
+
+    //Parent
+    Route::get('Parent','Parent\ParentController@index')->name('indexParent');
+
+
     //PERSONNEL
     Route::get('load_personnels','Admin\PersonnelController@loadPersonnels');
     Route::post('add_personnel','Admin\PersonnelController@store');
@@ -138,9 +152,35 @@ Route::group(['prefix'=>'ajax'],function(){
 
     //Matiere
     Route::get('load_matieres_datas','Admin\MatiereController@loadMatieresDatas');
+
     Route::put('update_matiere/{id}','Admin\MatiereController@updateMatieres');
     Route::post('add_matiere','Admin\MatiereController@store');
-    Route::get('delete_matiere/{id}','Admin\MatiereController@destroy');
+
+
+    //Blog
+    Route::get('load_poste','Admin\BlogController@loadPost');
+    Route::post('add_poste','Admin\BlogController@store');
+    Route::post('add_comment','Admin\BlogController@storecomment');
+    Route::put('update_poste/{id}','Admin\BlogController@updateposte');
+    Route::put('loadposte_User/{id}','Admin\BlogController@loaduser');
+    Route::get('delete_post/{id}','Admin\BlogController@destroy');
+    Route::get('delete_comment/{id}','Admin\BlogController@destroyComment');
+
+    Route::put('update_settingUser','Admin\AccountController@update');
+    Route::get('load_mail','Admin\AccountController@load_mail');
+
+
+    Route::post('add_payement','Admin\PayementController@store');
+    Route::post('add_newPayement','Admin\PayementController@addpaye');
+    Route::get('load_payement','Admin\PayementController@loadPayement');
+    Route::put('update_payement/{id}','Admin\PayementController@update');
+
+    /**
+     * Scolarite Espace
+     */
+    Route::get('load_scolarite','Admin\ScolariteController@loadScolarite');
+    Route::put('update_scolarite/{id}','Admin\ScolariteController@update');
+    Route::post('add_scolarite','Admin\ScolariteController@store');
 
     /**
      * EVALUATIONS
@@ -209,6 +249,7 @@ Route::group(['prefix'=>'ajax'],function(){
     Route::get('load_bulletins_datas_from_parent','Parent\EvaluationController@loadBulletinsDatasFromParent');
     Route::get('load_evaluations_parent/{eleve_id}/{matiere_id}/{session_id}','Parent\EvaluationController@loadEvaluations');
 
+
     //ABSENCES
     Route::get('load_planning_for_classes_with_absences','Ajax\AbsenceController@loadPlanningWithAbsences');
     Route::post('set_absents','Ajax\AbsenceController@setAbsents');
@@ -216,7 +257,6 @@ Route::group(['prefix'=>'ajax'],function(){
     //RETARD
     Route::get('load_retards_datas','Ajax\RetardController@loadDatas');
     Route::post('set_eleve_as_late','Ajax\RetardController@setEleveAsLate');
-
 
 });
 
@@ -234,7 +274,15 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('interventions','BasicController@showInterventionsPage')->name('interventions');
     Route::get('coef','BasicController@showCoefPage')->name('coef');
     Route::get('conseil','BasicController@showConseilPage')->name('conseil');
-    
+
+    /*
+    * Retards
+    */
+    Route::group(['prefix'=>"retards",'as'=>'retards.'],function(){
+        //  Route::get('eleves','Retard\RetardController@showEleves')->name('eleves');
+        Route::get('retard','Retard\RetardController@showRetardPage')->name('retard');
+    });
+
 
     Route::group(['prefix'=>'bulletins','as'=>'bulletins.'],function (){
         Route::get('appreciations','Admin\BulletinController@showAppreciationsPage')->name('appreciations');
@@ -272,9 +320,18 @@ Route::group(['middleware'=>'auth'],function(){
 
         Route::get('classes','Admin\ClasseController@liste')->name('classes');
         Route::get('matieres','Admin\MatiereController@index')->name('matieres.index');
+
         Route::get('eleves','Admin\EleveController@index')->name('eleves.index');
         Route::get('responsables','Admin\ResponsableController@index')->name('responsables.index');
         Route::get('Personnels','Admin\PersonnelController@index')->name('personnels.index');
+
+        Route::get('Blog','Admin\BlogController@index')->name('blog');
+        Route::get('Payements','Admin\PayementController@index')->name('payement.index');
+        Route::get('Scolarite','Admin\ScolariteController@index')->name('scolarite.index');
+        Route::get('eleves','Admin\EleveController@index')->name('eleves.index');
+        Route::get('responsables','Admin\ResponsableController@index')->name('responsables.index');
+        Route::get('Personnels','Admin\PersonnelController@index')->name('personnels.index');
+        Route::get('account','Admin\AccountController@index')->name('accountsetting');
 
     });
     /*
@@ -289,6 +346,7 @@ Route::group(['middleware'=>'auth'],function(){
         });
 
     });
+
     /*
      * Tous les lien relatif à l'Espace Parent
      */
@@ -320,3 +378,5 @@ Route::group(['middleware'=>'auth'],function(){
 
     Route::get('print_bulletin_of_eleve/{eleve_id}/{sessionId}','AppController@printBulettinOfEleve');
 });
+
+    Route::get('delete_matiere/{id}','Admin\MatiereController@destroy');

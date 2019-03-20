@@ -19,6 +19,7 @@ class BasicController extends Controller
     public function showConseilPage(){
         return view('espaces.protected.conseil');
     }
+<<<<<<< HEAD
 
     public function showRetardsPages(){
         return view('espaces.protected.retards');
@@ -28,4 +29,6 @@ class BasicController extends Controller
     public function showAbsencesPages(){
         return view('espaces.protected.absences');
     }
+=======
+>>>>>>> account_setting
 }

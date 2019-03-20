@@ -272,6 +272,10 @@ let Eleves={
                             targets:0
                         },
                         {
+
+                    columnDefs: [
+                        {
+
                             targets: -2,
                             visible: false
                         },
@@ -286,10 +290,18 @@ let Eleves={
                         }
                     ],
                     columns: [
+
                         {
                             data: "",
                             defaultContent: ""
                         },
+                        /*{ data: '#',
+                            render(data,type,row,meta){
+                            // console.log(meta)
+                            return meta.row+1;
+                            }
+                        },*/
+
                         { data: 'nom'},
                         { data: 'prenoms' },
                         { data: 'sexe' },
@@ -307,7 +319,8 @@ let Eleves={
                         selector: 'td:first-child',
                         blurable: true
                     },*/
-                });
+
+                }]});
 
                 table.on('order.dt search.dt', function () {
                     table.column(0).nodes().each( function (cell, i) {
@@ -323,6 +336,23 @@ let Eleves={
                  alert( 'Row index: '+table.row( this ).index() );
                  } );*/
 
+                
+                    // .rows().invalidate('data')
+                    // .draw(false);
+
+
+                table.on( 'click', 'tr', function () {
+                    alert( 'Row index: '+table.row( this ).index() );
+                } );
+
+                table.on( 'search.dt', function (a,b,c) {
+                    console.log( 'Row index: '+table.row( this ).index() );
+                    // alert();
+                    // console.log("a",a)
+                    // console.log("b",b)
+                    // console.log("c",c)
+                    $('#filterInfo').html( 'Currently applied global search: '+table.search() );
+                } );
 
                 /*t.button().add(0,{
                     extend: 'print',

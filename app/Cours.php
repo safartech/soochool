@@ -39,6 +39,7 @@ class Cours extends Model
         return $this->belongsTo(Jour::class);
     }
 
+
     public function appels(){
         return $this->hasMany(Appel::class,'cours_id');
     }
