@@ -44,7 +44,7 @@
 
 
 </head>
-<body>
+<body >
 
 <div class="be-wrapper be-fixed-sidebar">
     @include('layouts.navbars.main')
@@ -70,7 +70,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close"><span class="mdi mdi-close"></span></button>
+                    {{--<button type="button" data-dismiss="modal" aria-hidden="true" class="close"><span class="mdi mdi-close"></span></button>--}}
                 </div>
                 <div class="modal-body">
                     <div class="text-center">

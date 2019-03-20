@@ -264,8 +264,18 @@ let Eleves={
                     lengthMenu: [[10, 20, 50, -1], ['10 Lignes', '20 Lignes', '50 Lignes', "Toutes"]],
                     pageLength: 6,
                     rowReorder: true,
+                    order: [[ 1, 'asc' ]],
                     columnDefs: [
                         {
+                            searchable: false,
+                            orderable: false,
+                            targets:0
+                        },
+                        {
+
+                    columnDefs: [
+                        {
+
                             targets: -2,
                             visible: false
                         },
@@ -280,12 +290,18 @@ let Eleves={
                         }
                     ],
                     columns: [
+
+                        {
+                            data: "",
+                            defaultContent: ""
+                        },
                         /*{ data: '#',
                             render(data,type,row,meta){
                             // console.log(meta)
                             return meta.row+1;
                             }
                         },*/
+
                         { data: 'nom'},
                         { data: 'prenoms' },
                         { data: 'sexe' },
@@ -303,7 +319,24 @@ let Eleves={
                         selector: 'td:first-child',
                         blurable: true
                     },*/
-                })
+
+                }]});
+
+                table.on('order.dt search.dt', function () {
+                    table.column(0).nodes().each( function (cell, i) {
+                        // console.log(table.columns[0].data)
+                        // console.log(cell)
+                        cell.innerHTML = i+1;
+                        // cell.innerText = i+1;
+                        table.cell(cell).invalidate('dom');
+                    } );
+                } ).draw();
+
+                /*table.on( 'click', 'tr', function () {
+                 alert( 'Row index: '+table.row( this ).index() );
+                 } );*/
+
+                
                     // .rows().invalidate('data')
                     // .draw(false);
 

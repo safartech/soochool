@@ -8,6 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Evaluation extends Model
 {
 
+    /*
+     * Type d'evaluation cf App/EvaluationType
+     * 1- Interro
+     * 2- Devoir Surveillé
+     * 3- Compo
+     * 4- DM
+     */
+
     protected $guarded = ['id','type'];
 
     public function notes(){
@@ -35,7 +43,7 @@ class Evaluation extends Model
 
 
     public function eleves(){
-        return $this->belongsToMany('App\Eleve','notes','evaluation_id')->withPivot(['id','note']);
+        return $this->belongsToMany('App\Eleve','notes','evaluation_id')->withPivot(['id','note','taken']);
     }
 
     public function type(){
@@ -51,11 +59,31 @@ class Evaluation extends Model
         });
 
         self::created(function($ev){
-            $eval = Evaluation::with('classe.eleves')->find($ev->id);
+            $eval = Evaluation::with('classe.eleves','matiere')->find($ev->id);
             foreach ($eval->classe->eleves as $eleve){
-                $eval->eleves()->attach($eleve->id,['note'=>null]);
+                $eval->eleves()->attach($eleve->id,
+                    [
+                    'note'=>null,
+                        "sess_id" => $eval->session_id,
+                "class_id" => $eval->classe_id,
+                "mat_id" => $eval->matiere_id,
+                "typ_id" => $eval->type_id,
+                "taken" => $eval->take,
+                "coef" => $eval->matiere->coef,
+                    ]);
             }
         });
+
+        self::updated(function($ev){
+            $eval = Evaluation::with('notes')->find($ev->id);
+            $notes = $eval->notes;
+            foreach ($notes as $note){
+                $note->taken = $ev->take;
+                $note->save();
+            }
+        });
+
+
     }
 
 

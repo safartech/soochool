@@ -44,8 +44,21 @@ class Classe extends Model
     public function prof(){
         return $this->belongsTo(Personnel::class,'personnel_id');
     }
+
     /*public function salleId(){
         return $this->belongsTo('App\Salle');
     }*/
+
+    public function matieresArretees(){
+        return $this->hasMany(MatiereArretee::class,'classe_id');
+    }
+
+    public function moyennesCalculees(){
+        return $this->hasMany(MoyenneCalculee::class,'classe_id');
+    }
+
+    public function moyennes(){
+        return $this->hasMany(Moyenne::class);
+    }
 
 }

@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class General extends Model
 {
     public $timestamps = false;
+    protected $guarded = ['id'];
 }

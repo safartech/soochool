@@ -32,19 +32,15 @@ class Eleve extends Model
     }*/
 
     public function evaluations(){
-        return $this->belongsToMany('App\Evaluation','notes','eleve_id')->withPivot(['id','note']);
+        return $this->belongsToMany('App\Evaluation','notes','eleve_id')->withPivot(['id','note','taken']);
     }
 
     public function notes(){
-        return $this->belongsToMany('App\Evaluation','notes','eleve_id')->withPivot(['id','note']);
+        return $this->belongsToMany('App\Evaluation','notes','eleve_id')->withPivot(['id','note','taken']);
     }
 
     public function competences(){
         return $this->belongsToMany('App\Competence','epc','eleve_id')->withPivot(['session_id','validation']);
-    }
-
-    public function absences(){
-        return $this->belongsToMany('App\Seance','absences','seance_id','eleve_id')->withPivot(['motif']);
     }
 
     public function retardCounts(){
@@ -59,6 +55,33 @@ class Eleve extends Model
         return $this->hasMany(Conseil::class);
     }
 
+    public function abs(){
+        return $this->withCount('absents');
+    }
+
+    public function absents(){
+        return $this->hasMany(Absent::class);
+    }
+
+    public function absences(){
+        return $this->hasMany(Absence::class,'eleve_id');
+    }
+
+    public function retards(){
+        return $this->hasMany(Retard::class);
+    }
+
+    public function appreciations(){
+        return $this->hasMany(Appreciation::class);
+    }
+
+    public function moyennes(){
+        return $this->hasMany(Moyenne::class,'eleve_id');
+    }
+
+    public function resultats(){
+        return $this->hasMany(General::class,'eleve_id');
+    }
 
     protected static function boot()
     {

@@ -306,7 +306,11 @@
                             <table id="myTable" class="table table-condensed table-hover table-bordered table-striped table-fw-widget" data-page-length='10'>
                                 <thead>
                                 <tr>
+<<<<<<< HEAD
+                                    <th >#</th>
+=======
                                     {{--<th >#</th>--}}
+>>>>>>> account_setting
                                     <th data-class-name="priority">Nom</th>
                                     <th>Prenoms</th>
                                     <th>Sexe</th>
@@ -316,6 +320,8 @@
                                     <th>Classe</th>
                                 </tr>
                                 </thead>
+<<<<<<< HEAD
+=======
                                 {{--<thead>
                                 <tr>
                                     <th>Nom</th>
@@ -331,6 +337,7 @@
                                 </tr>
 
                                 </tbody>--}}
+>>>>>>> account_setting
                             </table>
                         </div>
                     </div>

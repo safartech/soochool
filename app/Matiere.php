@@ -15,8 +15,12 @@ class Matiere extends Model
         return $this->belongsTo('App\MatiereGroupe');
     }
 
-    public function profs(){
+    /*public function profs(){
         return $this->belongsToMany('App\Personnel','enseignes','matiere_id','personnel_id');
+    }*/
+
+    public function profs(){
+        return $this->belongsToMany('App\Personnel','interventions','matiere_id','personnel_id');
     }
 
     public function niveaux(){
@@ -63,6 +67,10 @@ class Matiere extends Model
 
     public function appreciations(){
         return $this->hasMany(Appreciation::class);
+    }
+
+    public function moyennes(){
+        return $this->hasMany(Moyenne::class);
     }
 
 }
