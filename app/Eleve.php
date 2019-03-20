@@ -32,11 +32,11 @@ class Eleve extends Model
     }*/
 
     public function evaluations(){
-        return $this->belongsToMany('App\Evaluation','notes','eleve_id')->withPivot(['id','note']);
+        return $this->belongsToMany('App\Evaluation','notes','eleve_id')->withPivot(['id','note','taken']);
     }
 
     public function notes(){
-        return $this->belongsToMany('App\Evaluation','notes','eleve_id')->withPivot(['id','note']);
+        return $this->belongsToMany('App\Evaluation','notes','eleve_id')->withPivot(['id','note','taken']);
     }
 
     public function competences(){
@@ -69,6 +69,18 @@ class Eleve extends Model
 
     public function retards(){
         return $this->hasMany(Retard::class);
+    }
+
+    public function appreciations(){
+        return $this->hasMany(Appreciation::class);
+    }
+
+    public function moyennes(){
+        return $this->hasMany(Moyenne::class,'eleve_id');
+    }
+
+    public function resultats(){
+        return $this->hasMany(General::class,'eleve_id');
     }
 
     protected static function boot()

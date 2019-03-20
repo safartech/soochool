@@ -16,8 +16,8 @@ class ConseilController extends Controller
         $sessions = Session::get();
 //        $niveaux = Niveau::with('classes')->get();
         $classes = Classe::with('eleves.conseils')->withCount('eleves')->get();
-        $conseils = Conseil::get();
-        return compact('classes','sessions','conseils');
+//        $conseils = Conseil::get();
+        return compact('classes','sessions');
     }
 
     public function setConseil(Request $request){

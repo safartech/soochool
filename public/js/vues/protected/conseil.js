@@ -47,7 +47,7 @@ let Conseil = {
                 console.log(res.data)
                 this.sessions = res.data.sessions
                 this.classes = res.data.classes
-                this.conseils = res.data.conseils
+                // this.conseils = res.data.conseils
             }).catch(err=>{
                 console.log(err.response.data)
             })
