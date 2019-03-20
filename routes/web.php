@@ -304,7 +304,7 @@ Route::group(['middleware'=>'auth'],function(){
         Route::get('eleves','Admin\EleveController@index')->name('eleves.index');
         Route::get('responsables','Admin\ResponsableController@index')->name('responsables.index');
         Route::get('Personnels','Admin\PersonnelController@index')->name('personnels.index');
-        Route::get('SettingUser','Admin\AccountController@index')->name('accountsetting');
+        Route::get('account','Admin\AccountController@index')->name('accountsetting');
 
     });
     /*
