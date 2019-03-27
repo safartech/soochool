@@ -157,9 +157,7 @@ let Responsables={
 new Vue(
     {
         el:"#app",
-        data:[
-
-        ],
+        data:{},
         methods: {
 
         },
