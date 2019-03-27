@@ -1,4 +1,4 @@
-@extends("default")
+@extends("templates.wrapper.modern")
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('js/select2/css/select2.min.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/lib/datetimepicker/css/bootstrap-datetimepicker.min.css') }}"/>
@@ -167,13 +167,15 @@
                             <h3 class="modal-title">Modification Eleve</h3>
                         </div>
                         <div class="modal-body">
-                            <div class="form-group col-md-6">
+                            <div class="col-md-12">
+                            <div class=" col-md-6">
                                 <label>Nom</label>
                                 <input type="text" v-model="updateEleve.nom" placeholder="Nom" class="form-control">
                             </div>
-                            <div class="form-group col-md-6">
+                            <div class=" col-md-6">
                                 <label>Prénoms</label>
                                 <input type="text" v-model="updateEleve.prenoms" placeholder="Prenom" class="form-control">
+                            </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="col-md-2"></div>

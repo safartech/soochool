@@ -1,13 +1,139 @@
-@extends("default")
+@extends("templates.wrapper.modern")
 @section('css')@endsection
 
 @section('js')
     <template id="matieres">
 
+        <div class="content-body"><!-- Basic Tables start -->
+            <div class="row">
+                <div class="col-12">
+                    <div id="form-bp1"  role="dialog" class="modal fade colored-header colored-header-primary">
+                        <div class="modal-dialog custom-width">
+                            <div class="modal-content">
+                                <div class="modal-header" style="background-color: #34a853;">
+                                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close md-close"><span class="mdi mdi-close"></span></button>
+                                    <h3 class="modal-title">Ajout Matiere</h3>
+                                </div>
+                                <div class="modal-body ">
+                                    <div class="form-group col-md-12">
+                                        <label>Nom Matiere</label>
+                                        <input type="text"  v-model="newMatiere.intitule" placeholder="Nom Matiere" class="form-control">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label>Indice Couleur</label>
+                                        <input type="text" v-model="newMatiere.couleur" placeholder="Indice Couleur" class="form-control">
+                                    </div>
 
-        <div class="col-sm-12">
+                                </div>
 
-            {{--Add matiere modal--}}
+
+                                <div class="modal-footer">
+                                    <button type="button" data-dismiss="modal" class="btn btn-default md-close">Annuler</button>
+                                    <button type="button" data-dismiss="modal" class="btn btn-primary md-close" style="background-color: #34a853; border-color: #34a853;" @click="addMatiere"><i style="color:white;" class="icon mdi mdi-plus-circle-o"></i> Ajouter</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="form-bp2"  role="dialog" class="modal fade colored-header colored-header-primary">
+                        <div class="modal-dialog custom-width">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close md-close"><span class="mdi mdi-close"></span></button>
+                                    <h3 class="modal-title">Modification Matiere</h3>
+                                </div>
+                                <div class="modal-body ">
+                                    <div class="form-group col-md-12">
+                                        <label>Nom Matiere</label>
+                                        <input type="text"  v-model="updateMatiere.intitule" placeholder="Nom Matiere" class="form-control">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label>Indice Couleur</label>
+                                        <input type="text" v-model="updateMatiere.couleur" placeholder="Indice Couleur" class="form-control">
+                                    </div>
+
+                                </div>
+
+
+                                <div class="modal-footer">
+                                    <button type="button" data-dismiss="modal" class="btn btn-default md-close">Annuler</button>
+                                    <button type="button" data-dismiss="modal" class="btn btn-primary md-close" @click="updatematiere" ><i style="color:white;" class="icon mdi mdi-plus-circle-o"></i> Modifier</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="mod-danger" tabindex="-1" role="dialog" class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close"><span class="mdi mdi-close"></span></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="text-center">
+                                        <div class="text-danger"><span class="modal-main-icon mdi mdi-close-circle-o"></span></div>
+                                        <h3>Attension!!!!</h3>
+                                        <p>L' élément sera définitivement supprimer de la Base de Donnée.</p>
+                                        <div class="xs-mt-50">
+                                            <button type="button" data-dismiss="modal" class="btn btn-space btn-default">Annuler</button>
+                                            <button type="button" data-dismiss="modal"   @click="del()"  class="btn btn-space btn-danger">Supprimer</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Both borders</h4>
+                            <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                            <div class="heading-elements">
+                                <button type="button" class="btn btn-success btn-min-width mr-1 mb-1" data-toggle="modal" data-target="#form-bp1"><i class="la la-plus-circle"></i>Ajouter</button>
+                            </div>
+
+                        </div>
+
+                        <div class="card-content">
+                            <div class="card-body card-dashboard">
+
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-bordered mb-0">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Couleur</th>
+                                        <th>Nom</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr v-for="(matiere,i) in matieres">
+
+                                        <td class="text-center"  style="font-weight: bold">@{{ i+1 }}</td>
+                                        <td :style="{'background-color': matiere.couleur}" ></td>
+                                        <td class="text-center" style="font-weight: bold">@{{ matiere.intitule }}</td>
+                                        <td class="text-center">
+
+                                            <a type="button" class="btn btn-info btn-min-width  mr-1 mb-1"  @click="showEditorModal(matiere)" data-toggle="modal">Modifier</a>
+                                            <a type="button" class="btn btn-danger btn-min-width btn-glow mr-1 mb-1" @click="showDeleteModal(matiere)"><i class="la la-star-o"></i>Supprimer</a>
+
+
+                                    </tr>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Responsive tables end -->
+        </div>
+       {{-- <div class="col-sm-12">
+
+            --}}{{--Add matiere modal--}}{{--
             <div id="form-bp1"  role="dialog" class="modal fade colored-header colored-header-primary">
                 <div class="modal-dialog custom-width">
                     <div class="modal-content">
@@ -36,7 +162,7 @@
                 </div>
             </div>
 
-            {{--Edit matiere modal--}}
+            --}}{{--Edit matiere modal--}}{{--
             <div id="form-bp2"  role="dialog" class="modal fade colored-header colored-header-primary">
                 <div class="modal-dialog custom-width">
                     <div class="modal-content">
@@ -66,7 +192,7 @@
             </div>
 
 
-            {{--Delete alert--}}
+            --}}{{--Delete alert--}}{{--
             <div id="mod-danger" tabindex="-1" role="dialog" class="modal fade">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -93,7 +219,7 @@
                 <div class="panel-heading ">Matières
                     <span class="panel-subtitle">Gestion et configuration des matières ou unités d'enseignements</span>
                     <div class="tools">
-                        {{--<span class="icon mdi mdi-more-vert"></span>--}}
+                        --}}{{--<span class="icon mdi mdi-more-vert"></span>--}}{{--
                     </div>
                 </div>
 
@@ -143,7 +269,7 @@
                                         <thead>
                                         <tr>
                                             <th class="text-center">#</th>
-                                            {{--<th class="text-center">Couleur</th>--}}
+                                            --}}{{--<th class="text-center">Couleur</th>--}}{{--
                                             <th class="text-center">Niveaux d'étude</th>
                                             <th class="text-center">Matieres</th>
                                             <th class="text-center">Coefficients</th>
@@ -154,7 +280,7 @@
                                         <tr v-for="(ue,i) in ues">
 
                                             <td class="text-center">@{{ i+1 }}</td>
-                                            {{--<td class="text-center" :style="{'background-color': matiere.couleur}"></td>--}}
+                                            --}}{{--<td class="text-center" :style="{'background-color': matiere.couleur}"></td>--}}{{--
                                             <td class="text-center">@{{ ue.niveau?ue.niveau.nom:'' }}</td>
                                             <td class="text-center">@{{ ue.matiere?ue.matiere.intitule:'' }}</td>
                                             <td class="text-center">@{{ ue.coef }}</td>
@@ -210,7 +336,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>--}}
 
 
     </template>

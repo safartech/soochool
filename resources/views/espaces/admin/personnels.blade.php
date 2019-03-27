@@ -1,4 +1,4 @@
-@extends("default")
+@extends("templates.wrapper.modern")
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/lib/select2/css/select2.min.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/lib/jquery.gritter/css/jquery.gritter.css') }}"/>

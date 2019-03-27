@@ -59,6 +59,8 @@
 </footer>
 <script src="{{ asset('js/vue.js') }}"></script>
 <script src="{{ asset('js/axios.js') }}"></script>
+<script type="text/javascript" src="{{asset('js/momentjs/moment.js')}}"></script>
+<script src="{{ asset('js/select2/js/select2.min.js') }}" type="module"></script>
 
 <!-- BEGIN VENDOR JS-->
 <script src="{{ asset('assets/modern/vendors/js/vendors.min.js') }}"></script>

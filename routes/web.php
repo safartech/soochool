@@ -188,7 +188,7 @@ Route::group(['prefix'=>'ajax'],function(){
     Route::put('update_settingUser','Admin\AccountController@update');
     Route::get('load_mail','Admin\AccountController@load_mail');
 
-
+    Route::get('delete_matiere/{id}','Admin\MatiereController@destroy');
     Route::post('add_payement','Admin\PayementController@store');
     Route::post('add_newPayement','Admin\PayementController@addpaye');
     Route::get('load_payement','Admin\PayementController@loadPayement');
@@ -398,4 +398,4 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('print_bulletin_of_eleve/{eleve_id}/{sessionId}','AppController@printBulettinOfEleve');
 });
 
-    Route::get('delete_matiere/{id}','Admin\MatiereController@destroy');
+

@@ -43,6 +43,7 @@ let Matieres={
                 this.matieres.push(res.data);
                 //this.loadDatas();
             }).catch(err=>{
+                console.log(err.response.data)
                 $.gritter.add({
                     title:"Erreur!!!!",
                     time:2000,
@@ -62,6 +63,7 @@ let Matieres={
                     class_name:"color success"});
                 this.loadDatas()
             }).catch(err=>{
+                console.log(err.res.data)
                 $.gritter.add({
                     title:"Suppresion",
                     time:2000,
