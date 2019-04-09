@@ -1,16 +1,12 @@
 @extends("templates.wrapper.modern")
 @section('css')
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/lib/select2/css/select2.min.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/lib/jquery.gritter/css/jquery.gritter.css') }}"/>
-    <style>
-        .select2{
-            width: 100%;
-        }
-    </style>
 
 @endsection
 
 @section('js')
+    <script>
+
+    </script>
     <script src="{{ asset('assets/lib/select2/js/select2.min.js') }}" type="module"></script>
     <template id="Personnels">
 
@@ -194,7 +190,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">All Bugs</h4>
+                    <h4 class="card-title">Liste du personnel</h4>
                     <a class="heading-elements-toggle"><i class="la la-ellipsis-h font-medium-3"></i></a>
                     <div class="heading-elements">
                         <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#form-bp1"><i class="ft-plus white"></i> Ajouter un membre</button>
@@ -267,6 +263,7 @@
 @endsection
 
 @section('content')
+
 
     <Personnels></Personnels>
 
