@@ -211,57 +211,80 @@
             </div>
 
 
-            <div class="panel panel-default">
-                <div class="panel-heading">Parents d'élèves
-                    <div class="tools"> <button data-toggle="modal" data-target="#form-bp1" type="button" class="btn btn-space btn-success  ">Ajouter</button><span class="icon mdi mdi-more-vert"></span></div>
-                </div>
-                <div class="panel-body">
-                    <table class="table table-condensed table-hover table-bordered table-striped">
-                        <thead>
-                        <tr>
-                            <th>#</th>
-                            <th class="text-center">Nom</th>
 
-                            <th class="text-center">Profession</th>
-                            <th class="text-center">Sexe</th>
-                            <th class="text-center">Domicile</th>
-                            <th class="text-center">Mail</th>
-                            <th class="text-center">Bureau</th>
-                            <th class="text-center">Action</th>
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Parents d'élèves</h4>
+                        <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
 
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr v-for="(responsable,i) in responsables">
-
-                            <td class="text-center">@{{ i+1 }}</td>
-
-                            <td class="text-center">@{{ responsable.nom_complet }}</td>
-                            <td class="text-center">@{{ responsable.profession }}</td>
-                            <td class="text-center">@{{ responsable.sexe }}</td>
-                            <td class="text-center">@{{ responsable.domicile }}</td>
-                            <td class="text-center">@{{ responsable.email }}</td>
-                            <td class="text-center">@{{ responsable.bureau }}</td>
-                            <td class="text-center">
-                                <a class="btn btn-info"  @click="showEditorModal(responsable)"  data-toggle="modal">Modifier</a>
-
-                                <button data-toggle="modal" type="button" @click="showDeleteModal(responsable)" class="btn btn-danger md-close">Supprimer</button>
+                        <div class="heading-elements">
+                            <ul class="list-inline mb-0">
+                                <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                                <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                                <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                                <li><a data-action="close"><i class="ft-x"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="tools"> <button data-toggle="modal" data-target="#form-bp1" type="button" class="btn btn-space btn-success  ">Ajouter</button><span class="icon mdi mdi-more-vert"></span></div>
+                        </div>
+                        <div class="table-responsive">
 
 
+                            <table class="table">
+                                <thead class="bg-primary white">
+                                <tr>
+                                    <th>#</th>
+                                    <th class="text-center">Nom</th>
+
+                                    <th>Profession</th>
+                                    <th >Sexe</th>
+                                    <th >Domicile</th>
+                                    <th >Mail</th>
+                                    <th>Bureau</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr v-for="(responsable,i) in responsables">
+
+                                    <td class="text-center">@{{ i+1 }}</td>
+
+                                    <td>@{{ responsable.nom_complet }}</td>
+                                    <td >@{{ responsable.profession }}</td>
+                                    <td >@{{ responsable.sexe }}</td>
+                                    <td >@{{ responsable.domicile }}</td>
+                                    <td >@{{ responsable.email }}</td>
+                                    <td >@{{ responsable.bureau }}</td>
+                                    <td >
+
+                                        <button data-toggle="modal" type="button" @click="showEditorModal(responsable)" class="btn btn-info md-close">Modifier</button>
+
+                                        <button data-toggle="modal" type="button" @click="showDeleteModal(responsable)" class="btn btn-danger md-close">Supprimer</button>
 
 
-                            </td>
 
-                        </tr>
 
-                        </tbody>
-                    </table>
+                                    </td>
 
+                                </tr>
+
+
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
                 </div>
             </div>
 
 
         </div>
+
 
 
 

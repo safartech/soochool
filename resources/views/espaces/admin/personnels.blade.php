@@ -193,7 +193,7 @@
                 </div>
             </div>
 
-            <div class="panel panel-default">
+            {{--<div class="panel panel-default">
                 <div class="panel-heading">Professeurs
                     <div class="tools"> <button data-toggle="modal" data-target="#form-bp1" type="button" class="btn btn-space btn-success  ">Ajouter</button><span class="icon mdi mdi-more-vert"></span></div>
                 </div>
@@ -208,7 +208,7 @@
                             <th class="text-center">Sexe</th>
                             <th class="text-center">Diplome</th>
                             <th class="text-center">Adresse</th>
-                            {{--<th class="text-center">Nom Complet</th>--}}
+                            --}}{{--<th class="text-center">Nom Complet</th>--}}{{--
                             <th class="text-center">Action</th>
 
                         </tr>
@@ -223,7 +223,7 @@
                             <td class="text-center">@{{ personnel.sexe }}</td>
                             <td class="text-center">@{{ personnel.diplomes }}</td>
                             <td class="text-center">@{{ personnel.adresse }}</td>
-                            {{--<td class="text-center">@{{ personnel.nom_complet    }}</td>--}}
+                            --}}{{--<td class="text-center">@{{ personnel.nom_complet    }}</td>--}}{{--
                             <td class="text-center">
                                 <a class="btn btn-info"  @click="showEditorModal(personnel)"  data-toggle="modal">Modifier</a>
                                 <a class="btn btn-danger" @click="showDeleteModal(personnel)">Supprimer</a>
@@ -233,6 +233,65 @@
 
                         </tbody>
                     </table>
+                </div>
+            </div>--}}
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Espace Professeurs</h4>
+                        <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                        <div class="heading-elements">
+                            <ul class="list-inline mb-0">
+                                <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                                <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                                <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                                <li><a data-action="close"><i class="ft-x"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="tools"> <button data-toggle="modal" data-target="#form-bp1" type="button" class="btn btn-space btn-success  ">Ajouter</button><span class="icon mdi mdi-more-vert"></span></div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class="bg-primary white">
+                                <tr>
+                                    <th>N°</th>
+                                    <th class="text-center">Nom</th>
+                                    <th class="text-center">Prenoms</th>
+                                    <th class="text-center">Sexe</th>
+                                    <th class="text-center">Diplome</th>
+                                    <th class="text-center">Adresse</th>
+                                    <th class="text-center">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr v-for="(personnel,i) in personnels">
+
+                                    <td class="text-center">@{{ i+1 }}</td>
+
+                                    <td class="text-center">@{{ personnel.nom }}</td>
+                                    <td class="text-center">@{{ personnel.prenoms }}</td>
+                                    <td class="text-center">@{{ personnel.sexe }}</td>
+                                    <td class="text-center">@{{ personnel.diplomes }}</td>
+                                    <td class="text-center">@{{ personnel.adresse }}</td>
+                                    {{--<td class="text-center">@{{ personnel.nom_complet    }}</td>--}}
+                                    <td class="text-center">
+
+                                        <a class="btn btn-info"  @click="showEditorModal(personnel)"  data-toggle="modal"><span style="color:white">Modifier</span></a>
+                                        <a class="btn btn-danger" @click="showDeleteModal(personnel)"><span style="color:white">Supprimer</span></a>
+
+                                    </td>
+                                </tr>
+
+
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
                 </div>
             </div>
 

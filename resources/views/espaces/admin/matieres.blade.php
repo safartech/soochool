@@ -110,12 +110,12 @@
                                     <tr v-for="(matiere,i) in matieres">
 
                                         <td class="text-center"  style="font-weight: bold">@{{ i+1 }}</td>
-                                        <td :style="{'background-color': matiere.couleur}" ></td>
+                                        <td :style="{'background-color': matiere.couleur}" style="height: 10px;"></td>
                                         <td class="text-center" style="font-weight: bold">@{{ matiere.intitule }}</td>
                                         <td class="text-center">
 
-                                            <a type="button" class="btn btn-info btn-min-width  mr-1 mb-1"  @click="showEditorModal(matiere)" data-toggle="modal">Modifier</a>
-                                            <a type="button" class="btn btn-danger btn-min-width btn-glow mr-1 mb-1" @click="showDeleteModal(matiere)"><i class="la la-star-o"></i>Supprimer</a>
+                                            <a type="button" class="btn btn-info btn-min-width  mr-1 mb-1"  @click="showEditorModal(matiere)" data-toggle="modal" style="color: white">Modifier</a>
+                                            <a type="button" class="btn btn-danger btn-min-width  mr-1 mb-1" @click="showDeleteModal(matiere)"  style="color: white"><i class="la la-star-o" ></i>Supprimer</a>
 
 
                                     </tr>
