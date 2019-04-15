@@ -55,7 +55,7 @@ let Conseil = {
         initView(){
             $('#select2-classes')
             // init select2
-                .select2()
+                // .select2()
                 .trigger('change')
                 // emit event on change.
                 .on('change',(e)=> {
@@ -63,7 +63,7 @@ let Conseil = {
                 });
             $('#select2-sessions')
             // init select2
-                .select2()
+                // .select2()
                 .trigger('change')
                 // emit event on change.
                 .on('change',(e)=> {
