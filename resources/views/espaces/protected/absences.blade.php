@@ -1,4 +1,4 @@
-@extends("default")
+@extends("templates.wrapper.modern")
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/lib/select2/css/select2.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('assets/lib/datatables/css/dataTables.bootstrap.min.css') }}">
@@ -31,7 +31,91 @@
 
     <template id="absence">
         <div>
-            <div class="col-lg-12">
+            <div class="col-lg-12" style="padding:0;">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><h4>Absences</h4></div>
+                        <h6>Emplois du temps et liste de présence.</h6>
+                    </div>
+
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="form-body">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <div class="form-group">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Cycles</label>
+                                            <select id="select2-classe" class="select2 form-control">
+                                                <option value="0" disabled selected  >Selectionner une classe</option>
+                                                <option v-for="classe in classes" :value="classe.id">@{{ classe.nom }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-1">
+                                        <div class="input-group-prepend">
+                                          	<span class="input-group-text">
+                                          			<span class="la la-print"></span>
+                                          	</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-1">
+                                        <div class="input-group-prepend">
+                                          	<span class="input-group-text">
+                                          			<span class="la la-print"></span>
+                                          	</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12" style="padding:0;">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="table-responsive full-calendar">
+                                <table class="table table-bordered mb-0">
+                                    <thead class="">
+                                    <tr>
+                                        <th class="text-center"><span class="label bg-danger white">Appel de présence non éffectué</span></th>
+                                        <th class="text-center"><span class="bg-primary white">Appel de presence éffectué</span></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr v-for="(eleve,i) in selectedClasse.eleves">
+                                        <td class="text-center">@{{ i+1 }}</td>
+                                        <td class="text-center">@{{ eleve.nom_complet }}</td>
+                                        <td class="text-center">@{{ getEleveAssiduite(eleve) }}</td>
+                                        <td class="text-center">@{{ getEleveConduite(eleve) }}</td>
+                                        <td class="text-center">@{{ getEleveTravail(eleve) }}</td>
+                                        <td class="text-center">@{{ getEleveRetards(eleve) }}</td>
+                                        <td class="text-center">@{{ getEleveAbsences(eleve) }}</td>
+                                        <td class="text-center">
+                                            <button class="btn btn-spce btn-default" @click="showAssiduiteSetter(eleve)">Définir</button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="cdt-calendar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- <div class="col-lg-12">
                 <div class="panel panel-default panel-border-color panel-border-color-primary">
                     <div class="panel-heading panel-heading-divider">Absences<span class="panel-subtitle">Emplois du temps et liste de présence.</span></div>
                     <div class="panel-body">
@@ -115,12 +199,13 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-sm-12">
                 <div class="">
                     <div class="">
                         <div class="row full-calendar">
                             <div class="col-md-12">
-                                <table class="table ">
+                                <table class="table">
                                     <thead>
                                     <tr>
                                         <td class="text-center" ><span class="label label-primary">Appel de présence non éffectué</span></td>
@@ -128,6 +213,7 @@
                                     </tr>
                                     </thead>
                                 </table>
+
                                 <div class="panel panel-default panel-fullcalendar">
                                     <div class="panel-body">
                                         <div id="cdt-calendar"></div>
@@ -155,7 +241,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             {{--Modals--}}
 

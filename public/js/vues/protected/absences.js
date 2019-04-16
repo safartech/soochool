@@ -285,7 +285,7 @@ let Absence = {
         initView(){
             $('#select2-classe')
             // init select2
-                .select2()
+                // .select2()
                 .trigger('change')
                 // emit event on change.
                 .on('change',(e)=> {
