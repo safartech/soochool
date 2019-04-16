@@ -17,150 +17,80 @@
                         <h6>Definir l'assiduités des élèves lors du conseil de classe chaque trimestre</h6>
                     </div>
 
-                    <div class="col-md-12">
-                        <div class="card-header">
-                            <div class="col-md-6">
-                                <div class=""><label>Sessions</label></div>
-                                <select id="select2-sessions" class="select2 form-control">
-                                    <option :value="null" disabled selected  >Selectionner une session</option>
-                                    <option v-for="session in sessions" :value="session.id">@{{ session.nom }}</option>
-                                </select>
-                            </div>
-                            <div class="heading-elements col-md-5">
-                                <div class=""><label>Classes</label></div>
-                                <select id="select2-classes" class="select2 form-control">
-                                    <option :value="null" disabled selected  >Selectionner une classe</option>
-                                    <option v-for="classe in classes" :value="classe.id">@{{ classe.nom }}</option>
-                                </select>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="form-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="projectinput1">Sessions</label>
+                                            <select id="select2-sessions" class="select2 form-control">
+                                                <option :value="null" disabled selected  >Selectionner une session</option>
+                                                <option v-for="session in sessions" :value="session.id">@{{ session.nom }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="projectinput2">Classes</label>
+                                            <select id="select2-classes" class="select2 form-control">
+                                                <option :value="null" disabled selected  >Selectionner une classe</option>
+                                                <option v-for="classe in classes" :value="classe.id">@{{ classe.nom }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
 
                 <div class="card">
                     <div class="card-header">
                         <div class="card-title"><h5>Conseil de classe du :<b>@{{ selectedSession.nom }}</b>
-                                Classe :<b>@{{ selectedClasse.nom }}</b>
-                                Effectif :<b>@{{ selectedClasse.eleves_count }}</b></h5></div>
+                            Classe :<b>@{{ selectedClasse.nom }}</b>
+                            Effectif :<b>@{{ selectedClasse.eleves_count }}</b></h5>
+                        </div>
                     </div>
 
-                    <div class="col-md-12">
-                        <div class="card-header">
-                            <div class="table-responsive">
-                                <table class="table table-bordered mb-0">
-                                    <thead class="bg-primary white">
-                                    <tr>
-                                        <th class="text-center">#</th>
-                                        <th class="text-center">Elèves</th>
-                                        <th class="text-center">Assiduite</th>
-                                        <th class="text-center">Conduite</th>
-                                        <th class="text-center">Travail</th>
-                                        <th class="text-center">Retards</th>
-                                        <th class="text-center">Absences</th>
-                                        <th class="text-center">Actions</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr v-for="(eleve,i) in selectedClasse.eleves">
-                                        <td class="text-center">@{{ i+1 }}</td>
-                                        <td class="text-center">@{{ eleve.nom_complet }}</td>
-                                        <td class="text-center">@{{ getEleveAssiduite(eleve) }}</td>
-                                        <td class="text-center">@{{ getEleveConduite(eleve) }}</td>
-                                        <td class="text-center">@{{ getEleveTravail(eleve) }}</td>
-                                        <td class="text-center">@{{ getEleveRetards(eleve) }}</td>
-                                        <td class="text-center">@{{ getEleveAbsences(eleve) }}</td>
-                                        <td class="text-center">
-                                            <button class="btn btn-spce btn-default" @click="showAssiduiteSetter(eleve)">Définir</button>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                          <div class="table-responsive">
+                              <table class="table table-bordered mb-0">
+                                  <thead class="bg-primary white">
+                                  <tr>
+                                      <th class="text-center">#</th>
+                                      <th class="text-center">Elèves</th>
+                                      <th class="text-center">Assiduite</th>
+                                      <th class="text-center">Conduite</th>
+                                      <th class="text-center">Travail</th>
+                                      <th class="text-center">Retards</th>
+                                      <th class="text-center">Absences</th>
+                                      <th class="text-center">Actions</th>
+                                  </tr>
+                                  </thead>
+                                  <tbody>
+                                  <tr v-for="(eleve,i) in selectedClasse.eleves">
+                                      <td class="text-center">@{{ i+1 }}</td>
+                                      <td class="text-center">@{{ eleve.nom_complet }}</td>
+                                      <td class="text-center">@{{ getEleveAssiduite(eleve) }}</td>
+                                      <td class="text-center">@{{ getEleveConduite(eleve) }}</td>
+                                      <td class="text-center">@{{ getEleveTravail(eleve) }}</td>
+                                      <td class="text-center">@{{ getEleveRetards(eleve) }}</td>
+                                      <td class="text-center">@{{ getEleveAbsences(eleve) }}</td>
+                                      <td class="text-center">
+                                          <button class="btn btn-spce btn-default" @click="showAssiduiteSetter(eleve)">Définir</button>
+                                      </td>
+                                  </tr>
+                                  </tbody>
+                              </table>
+                          </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            {{--<div class="col-lg-12">--}}
-                {{--<div class="panel panel-default panel-border-color panel-border-color-primary">--}}
-                    {{--<div class="panel-heading panel-heading-divider">Consl de classes<span class="panel-subtitle">Definir l'assiduités des élèves lors du conseil de classe chaque trimestre.</span></div>--}}
-                    {{--<div class="panel-body">--}}
-
-                        {{--<div class="col-lg-6">--}}
-                            {{--<div class=""><label>Sessions</label></div>--}}
-                            {{--<div class="">--}}
-                                {{--<select id="select2-sessions" class="select2 ">--}}
-                                    {{--<option :value="null" disabled selected  >Selectionner une session</option>--}}
-                                    {{--<option v-for="session in sessions" :value="session.id">@{{ session.nom }}</option>--}}
-                                {{--</select>--}}
-                            {{--</div>--}}
-
-                        {{--</div>--}}
-
-                        {{--<div class="col-lg-6">--}}
-                            {{--<div class=""><label class="control-label">Classes</label></div>--}}
-                            {{--<div class="">--}}
-                                {{--<select id="select2-classes" class="select2">--}}
-                                    {{--<option :value="null" disabled selected  >Selectionner une classe</option>--}}
-                                    {{--<option v-for="classe in classes" :value="classe.id">@{{ classe.nom }}</option>--}}
-                                {{--</select>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-
-                        {{--<div class="col-lg-3">--}}
-                            {{--<div class="btn-toolbar">--}}
-                                {{--<label>Action</label>--}}
-                                {{--<div class="">--}}
-                                    {{--<button style="width: 100%;" class="btn btn-default btn-xl btn-space btn-primary" data-toggle="tooltip" data-placement="top" title="Créer les interventions">Rechercher</button>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-            {{--<div class="col-sm-12" v-show="isReady">--}}
-                {{--<div class="panel panel-default">--}}
-                    {{--<div class="panel-heading">Conseil de classe du :<b>@{{ selectedSession.nom }}</b>--}}
-                        {{--Classe :<b>@{{ selectedClasse.nom }}</b>--}}
-                        {{--Effectif :<b>@{{ selectedClasse.eleves_count }}</b>--}}
-                        {{--<div class="tools">--}}
-                            {{--<span class="icon mdi mdi-download"></span>--}}
-                            {{--<span class="icon mdi mdi-close-circle"></span>--}}
-                            {{--<span class="icon mdi mdi-more-vert"></span></div>--}}
-                    {{--</div>--}}
-                    {{--<div class="panel-body">--}}
-                        {{--<table id="mainTable" class="table table-condensed table-hover table-bordered table-striped">--}}
-                            {{--<thead>--}}
-                            {{--<tr>--}}
-                                {{--<th class="text-center">#</th>--}}
-                                {{--<th class="text-center">Elèves</th>--}}
-                                {{--<th class="text-center">Assiduite</th>--}}
-                                {{--<th class="text-center">Conduite</th>--}}
-                                {{--<th class="text-center">Travail</th>--}}
-                                {{--<th class="text-center">Retards</th>--}}
-                                {{--<th class="text-center">Absences</th>--}}
-                                {{--<th class="text-center">Actions</th>--}}
-                            {{--</tr>--}}
-                            {{--</thead>--}}
-                            {{--<tbody>--}}
-                            {{--<tr v-for="(eleve,i) in selectedClasse.eleves">--}}
-                                {{--<td class="text-center">@{{ i+1 }}</td>--}}
-                                {{--<td class="text-center">@{{ eleve.nom_complet }}</td>--}}
-                                {{--<td class="text-center">@{{ getEleveAssiduite(eleve) }}</td>--}}
-                                {{--<td class="text-center">@{{ getEleveConduite(eleve) }}</td>--}}
-                                {{--<td class="text-center">@{{ getEleveTravail(eleve) }}</td>--}}
-                                {{--<td class="text-center">@{{ getEleveRetards(eleve) }}</td>--}}
-                                {{--<td class="text-center">@{{ getEleveAbsences(eleve) }}</td>--}}
-                                {{--<td class="text-center">--}}
-                                    {{--<button class="btn btn-spce btn-default" @click="showAssiduiteSetter(eleve)">Définir</button>--}}
-                                {{--</td>--}}
-                            {{--</tr>--}}
-                            {{--</tbody>--}}
-                        {{--</table>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-
 
             <div id="assiduite_setter"  role="dialog" class="modal fade colored-header colored-header-primary">
                 <div class="modal-dialog custom-width">
@@ -199,9 +129,9 @@
                                         <input type="radio" value="Souvent en retard" name="assiduite" v-model="selectedEleveConseil.assiduite" id="ass6">
                                         <label for="ass6">Souvent en retard</label>
                                     </div>
-
                                 </div>
                             </div>
+
                             <div class="form-group col-md-12">
                                 <label class="control-label">Conduite</label>
                                 <div class="">
@@ -229,10 +159,9 @@
                                         <input type="radio" name="conduite" v-model="selectedEleveConseil.conduite" value="Blâme" id="cond39">
                                         <label for="cond39">Blâme</label>
                                     </div>
-
-
                                 </div>
                             </div>
+
                             <div class="form-group col-md-12">
                                 <label class="control-label">Travail</label>
                                 <div class="">
@@ -268,7 +197,6 @@
                                         <input type="radio" name="travail" v-model="selectedEleveConseil.travail" value="Blâme" id="trav41">
                                         <label for="trav41">Blâme</label>
                                     </div>
-
                                 </div>
                             </div>
 
