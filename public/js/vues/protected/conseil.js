@@ -115,8 +115,10 @@ let Conseil = {
             this.selectedEleveConseil.session_id = this.selectedSession.id
             ajax.post('set_conseil_for_eleve',this.selectedEleveConseil).then(res=>{
                 console.log(res.data)
+                toastr.success("Modification effectue avec success");
             }).catch(err=>{
                 console.log(err.response.data)
+                toastr.error("Modification non effectuee");
             })
             this.selectedEleveConseil = {}
         }
