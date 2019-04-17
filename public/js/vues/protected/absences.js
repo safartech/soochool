@@ -263,6 +263,7 @@ let Absence = {
         }
     },
     mounted(){
+
         moment.locale('fr')
         this.loadDatas()
         this.initView()
@@ -271,6 +272,7 @@ let Absence = {
 
     },
     methods:{
+
         reload(){
             instance.get('load_planning_for_classes_with_absences').then(resp=>{
                 console.log(resp.data)
@@ -294,12 +296,15 @@ let Absence = {
                 });
         },
         loadDatas(){
+            alert('cvcv')
             instance.get('load_planning_for_classes_with_absences').then(resp=>{
+
                 console.log(resp.data)
                 this.classes = resp.data.classes
 
                 $('#cdt-calendar').fullCalendar(this.fc_options)
             }).catch(err=>{
+              alert('b')
                 console.log(err.response.data)
             })
         },

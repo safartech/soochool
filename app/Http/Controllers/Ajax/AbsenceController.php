@@ -20,7 +20,7 @@ class AbsenceController extends Controller
 //        $profs = Personnel::get();
 //        $salles = Salle::get();
 
-        return compact('classes');
+        return 12;
     }
 
     public function setAbsents(Request $request){
