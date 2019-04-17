@@ -16,6 +16,14 @@ class Eleve extends Model
         return $this->belongsToMany('App\Responsable','lien_parentes');
     }
 
+    public function payements(){
+        return $this->hasMany('App\Payement');
+    }
+
+    public function payement(){
+        return $this->hasMany('App\Payement');
+    }
+
     public function matieres(){
         return $this->belongsToMany('App\Matiere','notes','eleve_id','matiere_id');
     }

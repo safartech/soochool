@@ -28,55 +28,85 @@
                         </div>
                         <div class="modal-body ">
 
-                            <div class="form-group col-md-6">
-                                <label>Nom</label>
-                                <input type="text"  v-model="newResponsable.nom" placeholder="Nom" class="form-control">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label>Prenoms</label>
-                                <input type="text"  v-model="newResponsable.prenoms" placeholder="Prenoms" class="form-control">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="projectinput1">Nom</label>
+                                        <input type="text" v-model="newResponsable.nom" class="form-control" placeholder="Nom" >
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="projectinput2">Prenom</label>
+                                        <input type="text"v-model="newResponsable.prenoms"  class="form-control" placeholder="Prenoms" >
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="form-group col-md-12">
-                                <label>Profession</label>
-                                <input type="text"  v-model="newResponsable.profession" placeholder="Profession" class="form-control">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="projectinput1">Profession</label>
+                                        <input type="text"  class="form-control" v-model="newResponsable.profession" placeholder="Profession" >
+                                    </div>
+                                </div>
+
                             </div>
+
+
+
+
+
                             <div class="col-md-12">
                                 <div class="col-md-2"></div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label xs-pt-20">Sexe</label>
-                                    <div class="col-sm-6">
-                                        <div class="be-radio-icon inline">
-                                            <input  v-model="newResponsable.sexe" type="radio" checked="" value="F" name="radu" id="radu">
-                                            <label for="radu"><span class="mdi mdi-female"></span></label>
+                                    <fieldset class="text-center">
+                                        <div class="d-inline-block custom-control custom-radio mr-1">
+                                            <input type="radio" class="custom-control-input bg-primary" v-model="newResponsable.sexe" value="M" name="colorRadio" id="colorRadio1">
+                                            <label class="custom-control-label" for="colorRadio1">Masculin</label>
                                         </div>
-                                        <div class="be-radio-icon inline">
-                                            <input type="radio" v-model="newResponsable.sexe" name="radk" value="M" id="radk">
-                                            <label for="radk"><span class="mdi mdi-male-alt"></span></label>
+                                        <div class="d-inline-block custom-control custom-radio mr-1">
+                                            <input type="radio" class="custom-control-input bg-success" v-model="newResponsable.sexe" value="F" name="colorRadio" id="colorRadio2">
+                                            <label class="custom-control-label" for="colorRadio2">Feminin</label>
                                         </div>
+
+                                    </fieldset>
+                                </div>
+
+                            </div>
+
+
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="projectinput1">Domicile</label>
+                                        <input type="text" v-model="newResponsable.domicile" placeholder="Votre Domicile" class="form-control" >
                                     </div>
                                 </div>
-                                <div class="col-md-2"></div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="projectinput2">Code Postal</label>
+                                        <input type="text" v-model="newResponsable.code_postal" placeholder="Code Postal" class="form-control" >
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="form-group col-md-6">
-                                <label>Domicile</label>
-                                <input type="text"   v-model="newResponsable.domicile" placeholder="Votre Domicile" class="form-control">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label>Code Postal</label>
-                                <input type="text"   v-model="newResponsable.code_postal" placeholder="Code Postal" class="form-control">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label>Mail</label>
-                                <input type="text"  v-model="newResponsable.email" placeholder="E-mail" class="form-control">
-                            </div>
-
-
-
-                            <div class="form-group col-md-6">
-                                <label>Bureau</label>
-                                <input type="text"   v-model="newResponsable.bureau" placeholder="Bureau" class="form-control">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="projectinput1">Mail</label>
+                                        <input type="text"  v-model="newResponsable.email" placeholder="E-mail" class="form-control" >
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="projectinput2">Bureau</label>
+                                        <input type="text" v-model="newResponsable.bureau" placeholder="Bureau" class="form-control">
+                                    </div>
+                                </div>
                             </div>
 
 
@@ -84,14 +114,7 @@
                             <input type="hidden" v-model="nomComplet" placeholder="Telephone Mobile" class="form-control">
 
 
-                            {{--<div class="row">--}}
-                            {{--<div class="form-group col-md-12">--}}
-                            {{--<div class="be-checkbox">--}}
-                            {{--<input id="check2" type="checkbox">--}}
-                            {{--<label for="check2">Send me notifications about new products and services.</label>--}}
-                            {{--</div>--}}
-                            {{--</div>--}}
-                            {{--</div>--}}
+
                         </div>
 
 
@@ -115,56 +138,86 @@
                         </div>
                         <div class="modal-body ">
 
-                            <div class="form-group col-md-6">
-                                <label>Nom</label>
-                                <input type="text"  v-model="updateResponsable.nom" placeholder="Nom" class="form-control">
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="projectinput1">Nom</label>
+                                        <input type="text"v-model="updateResponsable.nom" class="form-control" placeholder="Nom" >
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="projectinput2">Prenom</label>
+                                        <input type="text"  v-model="updateResponsable.prenoms"  class="form-control" placeholder="Prenoms" >
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group col-md-6">
-                                <label>Prenoms</label>
-                                <input type="text"  v-model="updateResponsable.prenoms" placeholder="Prenoms" class="form-control">
-                            </div>
+
+
 
                             <div class="col-md-12">
                                 <div class="col-md-2"></div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label xs-pt-20">Sexe</label>
-                                    <div class="col-sm-6">
-                                        <div class="be-radio-icon inline">
-                                            <input value="F" v-model="updateResponsable.sexe" type="radio" name="radm" id="radm">
-                                            <label for="radm"><span class="mdi mdi-female"></span></label>
+                                    <fieldset class="text-center">
+                                        <div class="d-inline-block custom-control custom-radio mr-1">
+                                            <input type="radio" class="custom-control-input bg-primary" v-model="updateResponsable.sexe" value="M" name="colorRadio" id="colorRadio1">
+                                            <label class="custom-control-label" for="colorRadio1">Masculin</label>
                                         </div>
-                                        <div class="be-radio-icon inline">
-                                            <input type="radio" v-model="updateResponsable.sexe" name="radn" value="M" id="radn">
-                                            <label for="radn"><span class="mdi mdi-male-alt"></span></label>
+                                        <div class="d-inline-block custom-control custom-radio mr-1">
+                                            <input type="radio" class="custom-control-input bg-success" v-model="updateResponsable.sexe" value="F" name="colorRadio" id="colorRadio2">
+                                            <label class="custom-control-label" for="colorRadio2">Feminin</label>
                                         </div>
+
+                                    </fieldset>
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="projectinput1">Domicile</label>
+                                        <input type="text" v-model="updateResponsable.domicile" class="form-control" placeholder="Votre Domicile" >
                                     </div>
                                 </div>
-                                <div class="col-md-2"></div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="projectinput2">Code Postal</label>
+                                        <input type="text"  v-model="updateResponsable.code_postal"  class="form-control" placeholder="Code Postal" >
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="form-group col-md-6">
-                                <label>Domicile</label>
-                                <input type="text"   v-model="updateResponsable.domicile" placeholder="Votre Domicile" class="form-control">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label>Code Postal</label>
-                                <input type="text"   v-model="updateResponsable.code_postal" placeholder="Code Postal" class="form-control">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label>Mail</label>
-                                <input type="text"  v-model="updateResponsable.email" placeholder="E-mail" class="form-control">
-                            </div>
-
-
-                            <div class="form-group col-md-6">
-                                <label>Bureau</label>
-                                <input type="text"   v-model="updateResponsable.bureau" placeholder="Bureau" class="form-control">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="projectinput1">Mail</label>
+                                        <input type="text"  v-model="updateResponsable.email" class="form-control" placeholder="E-mail" >
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="projectinput2">Bureau</label>
+                                        <input type="text"  v-model="updateResponsable.bureau" placeholder="Bureau"  class="form-control">
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="form-group col-md-12">
-                                <label>Profession</label>
-                                <input type="text"  v-model="updateResponsable.profession" placeholder="Profession" class="form-control">
+
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="projectinput1">Profession</label>
+                                        <input type="text" v-model="updateResponsable.profession" placeholder="Profession" class="form-control" >
+                                    </div>
+                                </div>
                             </div>
+
 
                             <input type="hidden" v-model="nomComplet" placeholder="Telephone Mobile" class="form-control">
 
@@ -219,33 +272,35 @@
                         <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
 
                         <div class="heading-elements">
-                            <ul class="list-inline mb-0">
-                                <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                                <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
-                                <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                                <li><a data-action="close"><i class="ft-x"></i></a></li>
-                            </ul>
+                            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#form-bp1"><i class="ft-plus white"></i> Ajouter un Personnel</button>
+                            <span class="dropdown">
+                        <button id="btnSearchDrop1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-warning btn-sm dropdown-toggle dropdown-menu-right"><i class="ft-settings white"></i></button>
+                        <span aria-labelledby="btnSearchDrop1" class="dropdown-menu mt-1 dropdown-menu-right">
+                            <a href="#" class="dropdown-item"><i class="la la-calendar"></i> Due Date</a>
+                            <a href="#" class="dropdown-item"><i class="la la-random"></i> Priority </a>
+                            <a href="#" class="dropdown-item"><i class="la la-bar-chart"></i> Progress</a>
+                            <a href="#" class="dropdown-item"><i class="la la-user"></i> Assign to</a>
+                        </span>
+                        </span>
                         </div>
                     </div>
                     <div class="card-content collapse show">
-                        <div class="card-body">
-                            <div class="tools"> <button data-toggle="modal" data-target="#form-bp1" type="button" class="btn btn-space btn-success  ">Ajouter</button><span class="icon mdi mdi-more-vert"></span></div>
-                        </div>
+
                         <div class="table-responsive">
 
 
                             <table class="table">
                                 <thead class="bg-primary white">
                                 <tr>
-                                    <th>#</th>
+                                    <th class="text-center">#</th>
                                     <th class="text-center">Nom</th>
 
-                                    <th>Profession</th>
-                                    <th >Sexe</th>
-                                    <th >Domicile</th>
-                                    <th >Mail</th>
-                                    <th>Bureau</th>
-                                    <th>Action</th>
+                                    <th class="text-center">Profession</th>
+                                    <th class="text-center">Sexe</th>
+                                    <th class="text-center">Domicile</th>
+                                    <th class="text-center">Mail</th>
+                                    <th class="text-center">Bureau</th>
+                                    <th class="text-center">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -253,20 +308,25 @@
 
                                     <td class="text-center">@{{ i+1 }}</td>
 
-                                    <td>@{{ responsable.nom_complet }}</td>
-                                    <td >@{{ responsable.profession }}</td>
-                                    <td >@{{ responsable.sexe }}</td>
-                                    <td >@{{ responsable.domicile }}</td>
-                                    <td >@{{ responsable.email }}</td>
-                                    <td >@{{ responsable.bureau }}</td>
-                                    <td >
+                                    <td class="text-center">@{{ responsable.nom_complet }}</td>
+                                    <td class="text-center">@{{ responsable.profession }}</td>
+                                    <td class="text-center">@{{ responsable.sexe }}</td>
+                                    <td class="text-center">@{{ responsable.domicile }}</td>
+                                    <td class="text-center">@{{ responsable.email }}</td>
+                                    <td class="text-center">@{{ responsable.bureau }}</td>
+                                    {{--<td  class="text-center">
 
                                         <button data-toggle="modal" type="button" @click="showEditorModal(responsable)" class="btn btn-info md-close">Modifier</button>
 
-                                        <button data-toggle="modal" type="button" @click="showDeleteModal(responsable)" class="btn btn-danger md-close">Supprimer</button>
+                                        <button data-toggle="modal" type="button"  class="btn btn-danger md-close">Supprimer</button>
 
 
 
+
+                                    </td>--}}
+                                    <td class="text-center">
+                                        <button class="btn btn-info btn-sm" data-toggle="modal" @click="showEditorModal(responsable)" >Modifier</button>
+                                        <button class="btn btn-danger btn-sm" data-toggle="modal" @click="showDeleteModal(responsable)">Supprimer</button>
 
                                     </td>
 

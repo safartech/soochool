@@ -20,6 +20,10 @@ class Niveau extends Model
         return $this->hasMany('App\Classe');
     }
 
+    public function scolarite(){
+        return $this->hasOne('App\Scolarite');
+    }
+
     public function matieres(){
         return $this->belongsToMany('App\Matiere','dispenses','niveau_id','matiere_id');
     }

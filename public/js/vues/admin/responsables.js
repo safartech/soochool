@@ -48,24 +48,16 @@ let Responsables={
     methods:{
 
         addResponsable(){
-            //console.log(this.newEleve);
 
             this.newResponsable.nom_complet=this.nomComplet,
             instance.post('add_responsable',this.newResponsable).then(res=> {
-                $.gritter.add({
-                    title:"Ajout",
-                    time:2000,
-                    text:"Le Responsable "+this.newResponsable.nom+''+this.newResponsable.prenoms+" a été Ajouté avec Success",
-                    class_name:"color success"});
-                console.log(res.data);
+
+                toastr.success("Le Responsable "+this.newResponsable.nom+''+this.newResponsable.prenoms+" a été Ajouté avec Success")
+
                 this.responsables.push(res.data);
-                //this.loadDatas();
+                this.loadDatas();
             }).catch(err=>{
-                $.gritter.add({
-                    title:"Erreur !!!!",
-                    time:2000,
-                    text:"Le Responsable "+this.newResponsable.nom+''+this.newResponsable.prenoms+" n'a pas  été Ajouté avec Success",
-                    class_name:"color danger"});
+                toastr.error("Erreur d'ajout")
             })
 
 
@@ -75,19 +67,12 @@ let Responsables={
 
             instance.get('delete_responsable/'+this.deleteResponsable.id).then(res=>{
                 this.loadDatas()
-                $.gritter.add({
-                    title:"Suppresion",
-                    time:2000,
-                    text:"Le Responsable "+this.deleteResponsable.nom+' '+this.deleteResponsable.prenoms+" a été supprimer avec Success",
-                    class_name:"color success"});
 
+                toastr.success("Le Responsable "+this.deleteResponsable.nom+' '+this.deleteResponsable.prenoms+" a été supprimer avec Success")
             }).catch(err=>{
-                $.gritter.add({
-                    title:"Suppresion",
-                    time:2000,
-                    text:"Erreur de Supppression du Responsable"+this.deleteResponsable.nom+' '+this.deleteResponsable.prenoms,
-                    class_name:"color danger"});
-                console.log(err.response.data);
+
+                toastr.error("Erreur de Supppression du Responsable"+this.deleteResponsable.nom+' '+this.deleteResponsable.prenoms)
+
             })
         },
 
@@ -111,19 +96,10 @@ let Responsables={
             this.updateResponsable.nom_complet=this.nomComplets,
             instance.put('update_Responsable/'+this.updateResponsable.id,this.updateResponsable).then(res=> {
 
-                $.gritter.add({
-                    title:"Modification",
-                    time:2000,
-                    text:"Modification effectué avec Success.",
-                    class_name:"color success"});
-
+                toastr.success("Modification effectuée avec success")
                 this.loadDatas();
             }).catch(err=>{
-                $.gritter.add({
-                    title:"Modification",
-                    time:2000,
-                    text:"Echec de la Modification.",
-                    class_name:"color danger"});
+                toastr.error("Erreur de Modification")
             })
         },
 

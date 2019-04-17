@@ -38,20 +38,12 @@ let Scolarites={
         addScolarite(){
 
             instance.post('add_scolarite',this.newScolarite).then(res=> {
-                $.gritter.add({
-                    title:"BRAVO",
-                    time:4000,
-                    text:"Le solde   été Ajouté avec succes.",
-                    class_name:"color success"});
+                toastr.success("Scolarité Ajouté avec Success")
 
                 this.loadDatas();
             }).catch(err=>{
-                console.log(err)
-                $.gritter.add({
-                    title:"Erreur!!!!",
-                    time:4000,
-                    text:"Le solde  n'a pas été Ajouté. Réesayer SVP!",
-                    class_name:"color danger"});
+                toastr.error("Erreur Ajout Scolarite")
+
             })
 
 
@@ -60,20 +52,10 @@ let Scolarites={
         updatescolarite(){
             instance.put('update_scolarite/'+this.updateScolarite.id,this.updateScolarite).then(res=> {
 
-                console.log(res.data);
-                $.gritter.add({
-                    title:"Modification",
-                    time:2000,
-                    text:"Modification effectué avec Success.",
-                    class_name:"color success"});
+                toastr.success("Modification effectuée avec Success")
                 this.loadDatas();
             }).catch(err=>{
-                console.log(err)
-                $.gritter.add({
-                    title:"Modification",
-                    time:2000,
-                    text:"Echec de la Modification.",
-                    class_name:"color danger"});
+                toastr.error("Erreur Modification")
             })
         },
         loadDatas(){

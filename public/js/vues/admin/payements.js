@@ -52,38 +52,20 @@ let Payements={
         addPayement(){
             //console.log(this.newPersonnel);
             instance.post('add_payement',this.updatePayement).then(res=> {
-                $.gritter.add({
-                    title:"Ajout Matiere",
-                    time:2000,
-                    text:"La Matiere  a été Ajouté avec Success",
-                    class_name:"color suceess"});
+                toastr.success("Ajout Solde effectué avec success")
                 this.loadDatas();
             }).catch(err=>{
-                $.gritter.add({
-                    title:"Erreur!!!!",
-                    time:2000,
-                    text:"La Matiere  n'a pas été Ajouté. Réesayer SVP!",
-                    class_name:"color danger"});
+                toastr.error("Erreur survenu lors du payement")
             })
 
 
         },
         editpayement(){
             instance.put('update_payement/'+this.updatelistePayement.id,this.updatelistePayement).then(res=> {
-                console.log(res.data);
-                $.gritter.add({
-                    title:"Modification",
-                    time:2000,
-                    text:"Modification effectué avec Success.",
-                    class_name:"color success"});
+                toastr.success("Solde Modifier  avec Success")
                 this.loadDatas();
             }).catch(err=>{
-                console.log(err.response.data);
-                $.gritter.add({
-                    title:"Modification",
-                    time:2000,
-                    text:"Echec de la Modification.",
-                    class_name:"color danger"});
+                toastr.error("Erreur Modification Solde")
             })
         },
 
@@ -184,20 +166,12 @@ let Payements={
         addNewpaye(){
             //console.log(this.newPersonnel);
             instance.post('add_newPayement',this.newPayement).then(res=> {
-                $.gritter.add({
-                    title:"BRAVO",
-                    time:4000,
-                    text:" Payement Effectué avec succes.",
-                    class_name:"color success"});
+                toastr.success("Payement effectué avec succes")
 
                 this.loadDatas();
             }).catch(err=>{
 
-                $.gritter.add({
-                    title:"Erreur!!!!",
-                    time:4000,
-                    text:"Le payement n'a pas été effecté. Réesayer SVP!",
-                    class_name:"color danger"});
+                toastr.error("payement non effectué")
             })
 
 
@@ -219,15 +193,14 @@ let Payements={
         ,
 
         loadDatas(){
-alert('ezr')
+
             instance.get('load_payement').then(res=>{
-                /*this.eleves=res.data.eleve;
+                this.eleves=res.data.eleve;
                 this.listepayements=res.data.listepayement
                 this.filteredPayements=res.data.listepayement
-                console.log(res.data.listepayement);
+
                 this.elevess=res.data.elevet
-*/
-                alert(res.data)
+
 
 
             }).catch(err=>{

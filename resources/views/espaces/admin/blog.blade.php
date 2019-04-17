@@ -21,7 +21,27 @@
             </div>
            <div v-show="affichage">
                <div v-for="(post,i) in Poste">
-                   <div class="col-md-4">
+                   <div class="col-md-6 col-sm-12">
+                       <div class="card border-top-pink border-top-3 border-bottom-blue border-bottom-3 box-shadow-0">
+                           <div class="card-header">
+                               <h4 class="card-title">Border Extra Large Size</h4>
+                               <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                               <div class="heading-elements">
+                                   <ul class="list-inline mb-0">
+                                       <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                                       <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                                       <li><a data-action="close"><i class="ft-x"></i></a></li>
+                                   </ul>
+                               </div>
+                           </div>
+                           <div class="card-content collapse show">
+                               <div class="card-body">
+                                   <p class="card-text">Use <code>border-top-*</code> and <code>border-bottom-*</code> class for border top and bottom color.</p>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   {{--<div class="col-md-4">
                        <div class="panel panel-border-color panel-border-color-primary">
                            <div class="panel-heading">@{{ post.title }}</div>
                            <div class="panel-body">
@@ -37,7 +57,7 @@
                            </div>
 
                        </div>
-                   </div>
+                   </div>--}}
                </div>
            </div>
 

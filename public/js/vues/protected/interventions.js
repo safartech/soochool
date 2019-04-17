@@ -84,6 +84,8 @@ let interventions = {
             ajax.get('load_interventions').then(res=>{
                 console.log(res.data);
                 this.classes = res.data.classes
+
+                console.log(res.data.classes)
                 this.interventions = res.data.interventions
                 this.profs = res.data.profs
                 this.matieres = res.data.matieres

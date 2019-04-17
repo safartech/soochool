@@ -1,20 +1,15 @@
 @extends("templates.wrapper.modern")
 @section('css')
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/lib/select2/css/select2.min.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/lib/jquery.gritter/css/jquery.gritter.css') }}"/>
-    <style>
-        .select2{
-            width: 100%;
-
-        }
-
-    </style>
 
 @endsection
 
 @section('js')
+    <script>
+
+    </script>
     <script src="{{ asset('assets/lib/select2/js/select2.min.js') }}" type="module"></script>
     <template id="Personnels">
+
 
 
         <div class="col-sm-12">
@@ -193,46 +188,52 @@
                 </div>
             </div>
 
-            {{--<div class="panel panel-default">
+            <div class="panel panel-default">
                 <div class="panel-heading">Professeurs
                     <div class="tools"> <button data-toggle="modal" data-target="#form-bp1" type="button" class="btn btn-space btn-success  ">Ajouter</button><span class="icon mdi mdi-more-vert"></span></div>
                 </div>
-                <div class="panel-body">
-                    <table class="table table-condensed table-hover table-bordered table-striped">
-                        <thead>
-                        <tr>
-                            <th>#</th>
-                            <th class="text-center">Nom</th>
+                <div class="card-content">
+                    <div class="card-body">
+                        <!-- Task List table -->
+                        <div class="table-responsive">
+                            <table class="table table-white-space table-bordered table-middle table-condensed table-hover table-stripped">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th class="text-center">Nom</th>
 
                             <th class="text-center">Prenoms</th>
                             <th class="text-center">Sexe</th>
                             <th class="text-center">Diplome</th>
                             <th class="text-center">Adresse</th>
-                            --}}{{--<th class="text-center">Nom Complet</th>--}}{{--
+                            {{--<th class="text-center">Nom Complet</th>--}}
                             <th class="text-center">Action</th>
 
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr v-for="(personnel,i) in personnels">
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr v-for="(personnel,i) in personnels">
 
-                            <td class="text-center">@{{ i+1 }}</td>
+                                    <td class="text-center">@{{ i+1 }}</td>
 
                             <td class="text-center">@{{ personnel.nom }}</td>
                             <td class="text-center">@{{ personnel.prenoms }}</td>
                             <td class="text-center">@{{ personnel.sexe }}</td>
                             <td class="text-center">@{{ personnel.diplomes }}</td>
                             <td class="text-center">@{{ personnel.adresse }}</td>
-                            --}}{{--<td class="text-center">@{{ personnel.nom_complet    }}</td>--}}{{--
+                            {{--<td class="text-center">@{{ personnel.nom_complet    }}</td>--}}
                             <td class="text-center">
                                 <a class="btn btn-info"  @click="showEditorModal(personnel)"  data-toggle="modal">Modifier</a>
                                 <a class="btn btn-danger" @click="showDeleteModal(personnel)">Supprimer</a>
 
-                            </td>
-                        </tr>
+                                    </td>
+                                </tr>
 
-                        </tbody>
-                    </table>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
                 </div>
             </div>--}}
             <div class="col-12">
@@ -307,6 +308,7 @@
 @endsection
 
 @section('content')
+
 
     <Personnels></Personnels>
 

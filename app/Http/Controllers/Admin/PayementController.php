@@ -16,14 +16,14 @@ class PayementController extends Controller
         return view('espaces.admin.payements');
     }
     public function loadPayement(){
-       /* $eleve=Eleve::with(['payements'=>function($q){
+        $eleve=Eleve::with(['payements'=>function($q){
             $q->sum('paye');
         },'classe.niveau.scolarite'])->whereHas('payement')->get();
         $elevet=Eleve::with('classe')->get();
         $listepayement=Payement::with('eleve.classe.niveau.scolarite')->orderBy('created_at','desc')->get();
-        return compact("eleve","listepayement","elevet");*/
+        return compact("eleve","listepayement","elevet");
 
-       return 12;
+
 
 
     }

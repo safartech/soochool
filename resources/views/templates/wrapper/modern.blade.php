@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i%7CQuicksand:300,400,500,700" rel="stylesheet">
     <!-- BEGIN VENDOR CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/modern/css/vendors.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/modern/vendors/css/extensions/toastr.css') }}">
     <!-- END VENDOR CSS-->
     <!-- BEGIN MODERN CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/modern/css/app.css') }}">
@@ -20,7 +21,7 @@
     <!-- BEGIN Page Level CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/modern/css/core/menu/menu-types/vertical-menu.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/modern/css/core/colors/palette-gradient.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/modern/vendors/css/cryptocoins/cryptocoins.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/modern/css/plugins/extensions/toastr.css') }}">
     <!-- END Page Level CSS-->
 <!-- BEGIN Custom CSS-->
     @yield('css')
@@ -66,8 +67,7 @@
 <script src="{{ asset('assets/modern/vendors/js/vendors.min.js') }}"></script>
 <!-- BEGIN VENDOR JS-->
 <!-- BEGIN PAGE VENDOR JS-->
-<script src="{{ asset('assets/modern/vendors/js/charts/chart.min.js') }}"></script>
-<script src="{{ asset('assets/modern/vendors/js/charts/echarts/echarts.js') }}"></script>
+<script src="{{ asset('assets/modern/vendors/js/extensions/toastr.min.js') }}"></script>
 <!-- END PAGE VENDOR JS-->
 <!-- BEGIN MODERN JS-->
 <script src="{{ asset('assets/modern/js/core/app-menu.js') }}"></script>
