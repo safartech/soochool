@@ -64,7 +64,8 @@ let Personnels={
                 toastr.success("Nouveau personnel ajouté",this.newPersonnel.nom+'  '+this.newPersonnel.prenoms+" a été Ajouté avec Success")
                 //this.loadDatas();
             }).catch(err=>{
-                console.log(err.response.data);
+                toastr.error("Erreur d'ajout")
+
             })
 
 
