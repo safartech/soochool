@@ -284,6 +284,7 @@ Route::group(['prefix'=>'ajax'],function(){
 
 Route::group(['middleware'=>'auth'],function(){
 
+
     Route::get('conseil','BasicController@showConseilPage')->name('conseil');
     Route::get('retards','BasicController@showRetardsPages')->name('retards');
     Route::get('absences','BasicController@showAbsencesPages')->name('absences');
@@ -316,6 +317,16 @@ Route::group(['middleware'=>'auth'],function(){
      * prefix=>admin = page bloqued // already use by voyager
      */
     Route::group(['as'=>'admin.'],function (){
+
+        Route::group(['as'=>'view.'],function(){
+            Route::group(['as'=>'vs.'],function (){
+                Route::get('absences','Admin\ViewController@absences')->name('absences');
+                Route::get('retards','Admin\ViewController@retards')->name('retards');
+                Route::get('cdt','Admin\ViewController@cdt')->name('cdt');
+                Route::get('dm','Admin\ViewController@dm')->name('dm');
+            });
+
+        });
 
         Route::group(['prefix'=>"evaluations",'as'=>'evaluations.'],function(){
             Route::get('notes','Admin\EvaluationController@showNotesPage')->name('notes');

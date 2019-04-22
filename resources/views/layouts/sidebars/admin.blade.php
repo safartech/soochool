@@ -13,7 +13,7 @@
                         <li ><a href="{{ route('admin.blog') }}"><i class="icon mdi mdi-collection-bookmark"></i><span>Blog</span></a></li>
                         <li ><a href="{{ route('conseil') }}"><i class="icon mdi mdi-home"></i><span>Assiduites</span></a>
                         <li ><a href="{{ route('admin.payement.index') }}" ><i class="icon mdi mdi-money"></i><span>Payement</span></a></li>
-                        <li ><a href="{{ route('admin.scolarite.index') }}" ><i class="icon mdi mdi-money-box"></i><span>Scolarite</span></a></li>
+                        <li ><a href="{{ route('admin.scolarite.index') }}" ><i class="icon mdi mdi-money-box"></i><span>Scolarité</span></a></li>
                         <li ><a href="{{ route('interventions') }}"><i class="icon mdi mdi-home"></i><span>Interventions</span></a>
                         {{--                        <li ><a href="{{ route('coef') }}"><i class="icon mdi mdi-home"></i><span>Coefficients</span></a>--}}
                         <li ><a href="{{ route('retards.retard') }}"><i class="icon mdi mdi-home"></i><span>Retards</span></a>
