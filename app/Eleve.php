@@ -55,6 +55,19 @@ class Eleve extends Model
         return $this->hasMany(Conseil::class);
     }
 
+
+    public function appreciations(){
+        return $this->hasMany(Appreciation::class);
+    }
+
+    public function moyennes(){
+        return $this->hasMany(Moyenne::class,'eleve_id');
+    }
+
+    public function resultats(){
+        return $this->hasMany(General::class,'eleve_id');
+    }
+  
     public function abs(){
         return $this->withCount('absents');
     }
